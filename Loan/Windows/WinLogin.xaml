@@ -1,0 +1,46 @@
+﻿<Window x:Class="Loan.Windows.WinLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="265" Width="436" WindowStartupLocation="CenterScreen" WindowStyle="None" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Closing="Window_Closing" Loaded="Window_Loaded" >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="ورود" FontSize="22" FontWeight="Bold" Margin="0" VerticalAlignment="Top" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10"/>
+
+        <Rectangle Margin="20,45,0,0" Stroke="#FF192D6E" StrokeThickness="2" RadiusX="0" RadiusY="0" Height="125" VerticalAlignment="Top" HorizontalAlignment="Left" Width="392"/>
+
+        <Label x:Name="LblUserName" Content="نام کاربری:" Margin="34,60,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblUserPassword" Content="کلمه عبور:" HorizontalAlignment="Left" Margin="36,95,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblForgetPassword" Content="رمز خود را فراموش کرده ام" HorizontalAlignment="Left" Height="30" Margin="20,175,0,0" VerticalAlignment="Top" Foreground="Blue" Cursor="Hand" TabIndex="6" MouseDown="LblForgetPassword_MouseDown" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblNotifiction" HorizontalContentAlignment="Center" Margin="10,210,10,10" Foreground="DarkRed" Style="{DynamicResource LabelStyle1}" BorderBrush="#FF192D6E" BorderThickness="0,2,0,0" Cursor="None"/>
+
+        <TextBox x:Name="TxtUserName" Height="30" Margin="115,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="50" HorizontalAlignment="Left" Width="205"/>
+        <TextBox x:Name="TxtVisiblePassword" Height="30" Margin="115,95,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="205"/>
+
+        <PasswordBox x:Name="TxtPassword" Margin="115,95,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource PasswordBoxStyle1}" TabIndex="2" PasswordChanged="TxtPassword_PasswordChanged" FlowDirection="RightToLeft" FontSize="18" MaxLength="50" HorizontalAlignment="Left" Width="205"/>
+
+        <Image x:Name="ImgPadLock" Height="75" Margin="326,60,0,0" VerticalAlignment="Top" Source="../Icon/Padlock.png" HorizontalAlignment="Left" Width="75"/>
+        <Image x:Name="ImgShowPassword" Source="../Icon/Eye.png" PreviewMouseDown="ImgShowPassword_PreviewMouseDown" PreviewMouseUp="ImgShowPassword_PreviewMouseUp" Margin="290,95,0,0"  MouseLeave="ImgShowPassword_MouseLeave" HorizontalAlignment="Left" Width="30" Height="30" VerticalAlignment="Top" Visibility="Hidden"/>
+
+        <Button x:Name="BtnLogin" Content="ورود" Margin="115,130,0,0" Style="{DynamicResource ButtonStyle1}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" TabIndex="3" Click="BtnLogin_Click" IsDefault="True"/>
+        <Button x:Name="BtnExit" Content="خروج" Margin="220,130,0,0" Style="{DynamicResource ButtonStyle1}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" TabIndex="4" IsCancel="True" Click="Close"/>
+        <Button x:Name="BtnOsk" Content="صفحه کلید مجازی" Margin="220,175,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="5" Height="30" VerticalAlignment="Top" Click="BtnOsk_Click" HorizontalAlignment="Left" Width="192"/>
+
+    </Grid>
+</Window>

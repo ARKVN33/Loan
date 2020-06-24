@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{81FFFF8A-2B45-49E2-AD48-064C9186FCEC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Loan</RootNamespace>
+    <AssemblyName>Loan</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ProgramIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PersianDate, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PersianDateControls, Version=1.2.4495.22344, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\آموزش برنامه نویسی\C#\irprogram\CSharp Learning 2015 Full Package\3.WPF\2015 Source Pack\Part 3\PersianDateControls.dll</HintPath>
+    </Reference>
+    <Reference Include="PersianDateTime, Version=1.1.5082.36395, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PersianDateTime.1.1.5082.36395\lib\net40\PersianDateTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Stimulsoft.Base, Version=2016.3.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2016.3.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Class\BackupRestore.cs" />
+    <Compile Include="Class\CreateInstallment.cs" />
+    <Compile Include="Class\EcryptionManager.cs" />
+    <Compile Include="Class\SaltyPasswordHashing.cs" />
+    <Compile Include="Class\SerialNumber.cs" />
+    <Compile Include="Class\Utility.cs" />
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLicense.xaml.cs">
+      <DependentUpon>WinLicense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLoading.xaml.cs">
+      <DependentUpon>WinLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinAccountOperation.xaml.cs">
+      <DependentUpon>WinAccountOperation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinAddAdmin.xaml.cs">
+      <DependentUpon>WinAddAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinBankAccount.xaml.cs">
+      <DependentUpon>WinBankAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinChangePassword.xaml.cs">
+      <DependentUpon>WinChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinChargeMonthly.xaml.cs">
+      <DependentUpon>WinChargeMonthly.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinChMoPay.xaml.cs">
+      <DependentUpon>WinChMoPay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinFeeIncome.xaml.cs">
+      <DependentUpon>WinFeeIncome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinForgetPassword.xaml.cs">
+      <DependentUpon>WinForgetPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinInfo.xaml.cs">
+      <DependentUpon>WinInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinInfoSearch.xaml.cs">
+      <DependentUpon>WinInfoSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinInstallment.xaml.cs">
+      <DependentUpon>WinInstallment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLoan.xaml.cs">
+      <DependentUpon>WinLoan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLoanFund.xaml.cs">
+      <DependentUpon>WinLoanFund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLoanFundInfo.xaml.cs">
+      <DependentUpon>WinLoanFundInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinLogin.xaml.cs">
+      <DependentUpon>WinLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinMessageBox.xaml.cs">
+      <DependentUpon>WinMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinMembershipFee.xaml.cs">
+      <DependentUpon>WinMembershipFee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinNotifyMessage.xaml.cs">
+      <DependentUpon>WinNotifyMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinPerLoanRep.xaml.cs">
+      <DependentUpon>WinPerLoanRep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinPersonnel.xaml.cs">
+      <DependentUpon>WinPersonnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinPersonnelAndLoanSearch.xaml.cs">
+      <DependentUpon>WinPersonnelAndLoanSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinPersonnelSearch.xaml.cs">
+      <DependentUpon>WinPersonnelSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinUser.xaml.cs">
+      <DependentUpon>WinUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinWait.xaml.cs">
+      <DependentUpon>WinWait.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLicense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\WinAccountOperation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinAddAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinBankAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinChargeMonthly.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinChMoPay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinFeeIncome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinForgetPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinInfoSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinInstallment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLoanFund.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLoanFundInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinMembershipFee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinNotifyMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinPerLoanRep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinPersonnel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinPersonnelAndLoanSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinPersonnelSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{07c8bc08-b640-46a0-949e-89cb4d39d521}</Project>
+      <Name>DAL</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\AboutUs.png" />
+    <Resource Include="Icon\BackGround.png" />
+    <Resource Include="Icon\Backup.png" />
+    <Resource Include="Icon\BankAccount.png" />
+    <Resource Include="Icon\Boss.png" />
+    <Resource Include="Icon\BusinessLogo.png" />
+    <Resource Include="Icon\ChangePassword.png" />
+    <Resource Include="Icon\ChargeMonthly.png" />
+    <Resource Include="Icon\Correct.png" />
+    <Resource Include="Icon\Delete.png" />
+    <Resource Include="Icon\Edit.png" />
+    <Resource Include="Icon\Exit.png" />
+    <Resource Include="Icon\Eye.png" />
+    <Resource Include="Icon\FeeIncome.png" />
+    <Resource Include="Icon\Help.png" />
+    <Resource Include="Icon\Installment.png" />
+    <Resource Include="Icon\Key.png" />
+    <Resource Include="Icon\Loan.png" />
+    <Resource Include="Icon\LoanFund.png" />
+    <Resource Include="Icon\Padlock.png" />
+    <Resource Include="Icon\PayMoney.png" />
+    <Resource Include="Icon\Personnel.png" />
+    <Resource Include="Icon\ReceiveMoney.png" />
+    <Resource Include="Icon\Restore.png" />
+    <Resource Include="Icon\Search.png" />
+    <Resource Include="Icon\Setting.png" />
+    <Resource Include="Icon\Signature.png" />
+    <Resource Include="Icon\Stop.png" />
+    <Resource Include="Icon\Summary.png" />
+    <Resource Include="Icon\Update.png" />
+    <Resource Include="Icon\UserInfo.png" />
+    <Resource Include="Icon\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ProgramIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Melbourne_Docklands_-_Yarras_Edge_-_marina_panorama.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

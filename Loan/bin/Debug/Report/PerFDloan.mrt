@@ -1,0 +1,2228 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <RepAllPer Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>RepAllPer</Alias>
+        <ConnectionStringEncrypted />
+        <Name>RepAllPer</Name>
+      </RepAllPer>
+    </Databases>
+    <DataSources isList="true" count="10">
+      <tblLoanFund Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>tblLoanFund</Alias>
+        <Columns isList="true" count="12">
+          <value>Id,System.Byte</value>
+          <value>LoanFundName,System.String</value>
+          <value>LoanFundTell1,System.String</value>
+          <value>LoanFundTell2,System.String</value>
+          <value>LoanFundFax,System.String</value>
+          <value>LoanFundEmail,System.String</value>
+          <value>LoanFundPostalCode,System.String</value>
+          <value>LoanFundAddress,System.String</value>
+          <value>LoanFundInitialBalance,System.String</value>
+          <value>LoanFundPenalty,System.String</value>
+          <value>LoanFundWagePercent,System.String</value>
+          <value>LoanFundLogo,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>tblLoanFund</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from tblLoanFund</SqlCommand>
+      </tblLoanFund>
+      <PerInfo Ref="4" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PerInfo</Alias>
+        <Columns isList="true" count="11">
+          <value>PersonnelId,System.String</value>
+          <value>PersonnelMembership,System.String</value>
+          <value>PersonnelMembershipDate,System.String</value>
+          <value>InfoNationalCode,System.String</value>
+          <value>InfoFirstName,System.String</value>
+          <value>InfoLastName,System.String</value>
+          <value>InfoFatherName,System.String</value>
+          <value>InfoMobile,System.String</value>
+          <value>InfoTell,System.String</value>
+          <value>InfoImage,System.String</value>
+          <value>InfoJobName,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PerInfo</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT dbo.tblPersonnel.PersonnelId, dbo.tblPersonnel.PersonnelMembership,
+  dbo.tblPersonnel.PersonnelMembershipDate, dbo.tblInfo.InfoNationalCode,
+  dbo.tblInfo.InfoFirstName, dbo.tblInfo.InfoLastName,
+  dbo.tblInfo.InfoFatherName, dbo.tblInfo.InfoMobile, dbo.tblInfo.InfoTell,
+  dbo.tblInfo.InfoImage, dbo.tblInfo.InfoJobName
+FROM dbo.tblPersonnel INNER JOIN
+  dbo.tblInfo ON dbo.tblInfo.Id = dbo.tblPersonnel.Personnel_Info_Id
+WHERE tblPersonnel.Id = {PerId}</SqlCommand>
+      </PerInfo>
+      <PPay Ref="5" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PPay</Alias>
+        <Columns isList="true" count="1">
+          <value>Pay,System.Int64</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PPay</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT ISNULL(SUM(CAST(AccountAmount AS BIGINT)), 0) AS Pay
+ FROM dbo.tblAccount 
+ WHERE Account_TransactionType_Id IN (1,2,3,4,5,9,10) AND Account_Personnel_Id = {PerId}</SqlCommand>
+      </PPay>
+      <PReceivee Ref="6" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PReceivee</Alias>
+        <Columns isList="true" count="1">
+          <value>Receivee,System.Int64</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PReceivee</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT ISNULL(SUM(CAST(AccountAmount AS BIGINT)), 0) AS Receivee
+ FROM dbo.tblAccount 
+ WHERE Account_TransactionType_Id IN (6) AND Account_Personnel_Id = {PerId}</SqlCommand>
+      </PReceivee>
+      <PAllLoanPay Ref="7" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PAllLoanPay</Alias>
+        <Columns isList="true" count="1">
+          <value>AllLoanPay,System.Int64</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PAllLoanPay</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT  ISNULL(SUM(CAST(LoanAmount AS BIGINT)), 0) AS AllLoanPay
+ FROM dbo.tblLoan
+ WHERE Loan_Personnel_Id  = {PerId}</SqlCommand>
+      </PAllLoanPay>
+      <PInsTotalAmount Ref="8" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PInsTotalAmount</Alias>
+        <Columns isList="true" count="1">
+          <value>InsTotalAmount,System.Int64</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PInsTotalAmount</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT ISNULL(SUM(CAST(InstallmentDueAmount AS BIGINT)), 0) AS InsTotalAmount
+FROM (SELECT dbo.tblLoan.Loan_Personnel_Id, dbo.tblInstallment.InstallmentAmount, dbo.tblInstallment.InstallmentDueAmount
+FROM dbo.tblInstallment INNER JOIN
+     dbo.tblLoan  ON dbo.tblInstallment.Installment_Loan_Id = dbo.tblLoan.Id) AS foo 
+WHERE InstallmentAmount IS NOT NULL AND foo.Loan_Personnel_Id = {PerId}</SqlCommand>
+      </PInsTotalAmount>
+      <PInsRemaining Ref="9" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PInsRemaining</Alias>
+        <Columns isList="true" count="1">
+          <value>InsRemaining,System.Int64</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PInsRemaining</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT ISNULL(SUM(CAST(InstallmentDueAmount AS BIGINT)), 0) AS InsRemaining
+FROM (SELECT dbo.tblLoan.Loan_Personnel_Id, dbo.tblInstallment.InstallmentAmount, dbo.tblInstallment.InstallmentDueAmount
+FROM dbo.tblInstallment INNER JOIN
+     dbo.tblLoan  ON dbo.tblInstallment.Installment_Loan_Id = dbo.tblLoan.Id) AS foo 
+WHERE InstallmentAmount IS NULL AND foo.Loan_Personnel_Id = {PerId}</SqlCommand>
+      </PInsRemaining>
+      <PLoanIsPayOff Ref="10" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PLoanIsPayOff</Alias>
+        <Columns isList="true" count="1">
+          <value>LoanIsPayOff,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PLoanIsPayOff</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT COUNT(*) AS LoanIsPayOff
+ FROM dbo.tblLoan
+ WHERE dbo.tblLoan.LoanPayOff = 1 AND Loan_Personnel_Id = {PerId}</SqlCommand>
+      </PLoanIsPayOff>
+      <PLoanNotPayOff Ref="11" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PLoanNotPayOff</Alias>
+        <Columns isList="true" count="1">
+          <value>LoanNotPayOff,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PLoanNotPayOff</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT COUNT(*) AS LoanNotPayOff
+ FROM dbo.tblLoan
+ WHERE dbo.tblLoan.LoanPayOff = 0 AND Loan_Personnel_Id = {PerId}</SqlCommand>
+      </PLoanNotPayOff>
+      <PAllLoanNum Ref="12" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PAllLoanNum</Alias>
+        <Columns isList="true" count="1">
+          <value>AllLoanNum,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PAllLoanNum</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand> SELECT COUNT(*) AS AllLoanNum
+ FROM dbo.tblLoan WHERE Loan_Personnel_Id = {PerId}</SqlCommand>
+      </PAllLoanNum>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="21">
+      <value>,ShamsiDate,ShamsiDate,,System.String,,False,False,False,False</value>
+      <value>,programPath,programPath,,System.String,,False,False,False,False</value>
+      <value>,TimeNow,TimeNow,,System.String,,False,False,False,False</value>
+      <value>,PerId,PerId,,System.Int32,,False,False,False,False,,,True</value>
+      <value>,LoanId,LoanId,,System.Int32,,False,False,False,False,,,True</value>
+      <value>,LoanFundIniBal,LoanFundIniBal,,System.Int64,,False,False,False,False</value>
+      <value>,BankAccIniBal,BankAccIniBal,,System.Int64,,False,False,False,False</value>
+      <value>,Pay,Pay,,System.Int64,,False,False,False,False</value>
+      <value>,Receivee,Receivee,,System.Int64,,False,False,False,False</value>
+      <value>,IncomeAmount,IncomeAmount,,System.Int64,,False,False,False,False</value>
+      <value>,FeeAmount,FeeAmount,,System.Int64,,False,False,False,False</value>
+      <value>,InsTotalAmount,InsTotalAmount,,System.Int64,,False,False,False,False</value>
+      <value>,AllLoanPay,AllLoanPay,,System.Int64,,False,False,False,False</value>
+      <value>,AllWage,AllWage,,System.Int64,,False,False,False,False</value>
+      <value>,InsTotalDueAmount,InsTotalDueAmount,,System.Int64,,False,False,False,False</value>
+      <value>,InsRemaining,InsRemaining,,System.Int64,,False,False,False,False</value>
+      <value>,LoanIsPayOff,LoanIsPayOff,,System.Int64,,False,False,False,False</value>
+      <value>,LoanNotPayOff,LoanNotPayOff,,System.Int64,,False,False,False,False</value>
+      <value>,AllLoanNum,AllLoanNum,,System.Int64,,False,False,False,False</value>
+      <value>,MembershipFee,MembershipFee,,System.Int64,,False,False,False,False</value>
+      <value>,TotalFund,TotalFund,,System.Int64,,False,False,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="13" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>[255:255:255]</Brush>
+      <Components isList="true" count="5">
+        <ReportTitleBand1 Ref="14" type="ReportTitleBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4,138.1,8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text4 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,138,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="13" />
+              <Parent isRef="14" />
+              <Text>صندوق قرض الحسنه {tblLoanFund.LoanFundName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="13" />
+          <Parent isRef="13" />
+        </ReportTitleBand1>
+        <DataspSelectPersonnelInfo Ref="16" type="DataBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,20,138.1,26</ClientRectangle>
+          <Components isList="true" count="19">
+            <DataspSelectPersonnelInfo_PersonnelMembershipDate Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,0,18,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_PersonnelMembershipDate</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.PersonnelMembershipDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_PersonnelMembershipDate>
+            <DataspSelectPersonnelInfo_PersonnelMembership Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>64,0,16,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_PersonnelMembership</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{Switch(PerInfo.PersonnelMembership == "1","عضو",PerInfo.PersonnelMembership == "2","غیر عضو")}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_PersonnelMembership>
+            <DataspSelectPersonnelInfo_InfoNationalCode Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>67,12,18,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoNationalCode</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoNationalCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoNationalCode>
+            <DataspSelectPersonnelInfo_InfoLastName Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>35,6,44,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoLastName</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoLastName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoLastName>
+            <HeaderspSelectPersonnelInfo_InfoLastName Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>79,6,18,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoLastName</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:نام خانوادگی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoLastName>
+            <HeaderspSelectPersonnelInfo_InfoNationalCode Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>85,12,12,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoNationalCode</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:کد ملی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoNationalCode>
+            <Text10 Ref="23" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,12,29,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>38fdb96621c849d29de62b7defce54c3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoFatherName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>126,12,11,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>487ef63b99d14d8aa3361603f7988633</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:نام پدر</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <HeaderspSelectPersonnelInfo_PersonnelMembership Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>80,0,17,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_PersonnelMembership</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:نوع عضویت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_PersonnelMembership>
+            <HeaderspSelectPersonnelInfo_PersonnelMembershipDate Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>44,0,20,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_PersonnelMembershipDate</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:تاریخ عضویت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_PersonnelMembershipDate>
+            <Text12 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,18,24,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3fee485cd03749e7b22a0ec48ebf8d6d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoMobile}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text21 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>121,18,16,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>40b6ab9f7c3d4213a9f70ea29bb434ed</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:تلفن همراه</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <DataspSelectPersonnelInfo_PersonnelId Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,0,24,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_PersonnelId</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.PersonnelId}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_PersonnelId>
+            <HeaderspSelectPersonnelInfo_PersonnelId Ref="30" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>121,0,16,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_PersonnelId</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:کد عضویت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_PersonnelId>
+            <Image1 Ref="31" type="Image" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4,2,17,22</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <HorAlignment>Center</HorAlignment>
+              <ImageURL>{programPath}{PerInfo.InfoImage}</ImageURL>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Stretch>True</Stretch>
+              <VertAlignment>Center</VertAlignment>
+            </Image1>
+            <DataspSelectPersonnelInfo_InfoFirstName Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,6,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoFirstName</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoFirstName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoFirstName>
+            <HeaderspSelectPersonnelInfo_InfoFirstName Ref="33" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>131,6,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoFirstName</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:نام</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoFirstName>
+            <Text17 Ref="34" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>58,18,24,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>745c7a79ed7443e09ade03ad3e0432cb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>{PerInfo.InfoTell}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="35" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>82,18,15,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>e45545ac57fd4d5d81cdfa835e6fd1cf</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="13" />
+              <Parent isRef="16" />
+              <Text>:تلفن ثابت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>PerInfo</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataspSelectPersonnelInfo</Name>
+          <Page isRef="13" />
+          <Parent isRef="13" />
+          <Sort isList="true" count="0" />
+        </DataspSelectPersonnelInfo>
+        <HeaderPerInfo2 Ref="36" type="HeaderBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,54,138.1,8</ClientRectangle>
+          <Components isList="true" count="2">
+            <HeaderPerInfo_PersonnelId Ref="37" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,69,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerInfo_PersonnelId</Name>
+              <Page isRef="13" />
+              <Parent isRef="36" />
+              <Text>اطلاعات شخص</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerInfo_PersonnelId>
+            <HeaderPerInfo_PersonnelMembership Ref="38" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,0,69,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerInfo_PersonnelMembership</Name>
+              <Page isRef="13" />
+              <Parent isRef="36" />
+              <Text>اطلاعات صندوق</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerInfo_PersonnelMembership>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderPerInfo2</Name>
+          <Page isRef="13" />
+          <Parent isRef="13" />
+        </HeaderPerInfo2>
+        <DataPerInfo Ref="39" type="DataBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,70,138.1,96</ClientRectangle>
+          <Components isList="true" count="97">
+            <Text13 Ref="40" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,0,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>موجودی اولیه صندوق:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="41" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,6,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>موجودی اولیه حساب ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text1 Ref="42" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,6,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>08b1d122156d49628fa7d8e4160678e3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{BankAccIniBal}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="43" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,6,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>23c65a58c3d74e2a9fe2a593ca95706c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="45" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,0,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>23773d9f85814950934d72391cfc2e86</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{LoanFundIniBal}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="46" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text5 Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,0,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3df71bf7ffb2411da4de58322e230e32</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="48" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,12,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع پرداخت ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="49" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,18,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>cb2483fe28eb4dfa8884728c807cb9c6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{Receivee}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="50" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="51" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,18,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>8bdceedbebf141c8b14a4997dd818fa9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="52" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,12,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>6472202d84f34301ab3f2b3ad9f22f2b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{Pay}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="53" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text15 Ref="54" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,12,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>841445add0dc40c68d6e0d06df4e7621</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="55" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,36,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>a925f675e03c4d5b813bc71cfe2f9023</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{FeeAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="56" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text19 Ref="57" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,36,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>7a062c725c954549a02936bf163e46b2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text20 Ref="58" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,30,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>6e1a0b181f4149129da308bce0488b33</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{IncomeAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="59" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text22 Ref="60" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,30,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>ca9b4c6ef086461a8b36e25a78a0da68</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text23 Ref="61" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,48,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>855e8836c0f34705926e7dd820144e86</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{TotalFund}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="62" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text24 Ref="63" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,48,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>04182b536e1d442c87ae08630f265ac3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text25 Ref="64" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,42,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>0b778cfbc8494574916e8f2f7752a925</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{InsTotalAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="65" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text26 Ref="66" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,42,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3f6a7e5fc56b4ef286a33effe93c7f4f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+            <Text27 Ref="67" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,18,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع برداشت ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text28 Ref="68" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,30,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع درآمدها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+            <Text29 Ref="69" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,36,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع هزینه ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text29>
+            <Text30 Ref="70" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,42,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text30</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع اقساط دریافتی:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text30>
+            <Text31 Ref="71" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,48,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text31</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>کل موجودی:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text31>
+            <Text34 Ref="72" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,54,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع وام های پرداختی:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text34>
+            <Text32 Ref="73" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,60,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text32</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع کارمزد ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text32>
+            <Text33 Ref="74" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,66,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text33</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع وام ها و کارمزد ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text33>
+            <Text35 Ref="75" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,72,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text35</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع اقساط مانده:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text35>
+            <Text36 Ref="76" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,60,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>66c30687e43b4497a422b7328de9113c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{AllWage}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="77" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+            <Text37 Ref="78" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,60,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>0fbe473c7e8c436694e2f8a5d4d34050</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text37</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text37>
+            <Text38 Ref="79" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,54,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>a5506e4674024774a3ded3cac06afba9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text38</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{AllLoanPay}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="80" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text38>
+            <Text39 Ref="81" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,54,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>9a37aa0a114b4f35853b8746076fc34e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text39</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text39>
+            <Text40 Ref="82" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,72,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>4992d9ceba814320a96935651123989d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{InsRemaining}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="83" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+            <Text41 Ref="84" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,72,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>eac32d5c897f4324926e4f9a48061e0c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text41</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text41>
+            <Text42 Ref="85" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,66,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>e7cd11593698466cae45ab227ec631e6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text42>
+            <Text43 Ref="86" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,66,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>6695d8b0b5804f93b68eaf85013b4fe5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text43</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{InsTotalDueAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="87" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text43>
+            <Text44 Ref="88" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,78,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text44</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد وام های تسویه شده:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text44>
+            <Text45 Ref="89" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,84,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد وام های در گردش:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text45>
+            <Text47 Ref="90" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>71,78,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>37d9b7e78b184a00b152e28f664d86a9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text47</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{LoanIsPayOff}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text47>
+            <Text48 Ref="91" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>71,84,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>b6a84eb9aa574f1b919a727aa93c89d4</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{LoanNotPayOff}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text48>
+            <Text50 Ref="92" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,0,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>d3a8536d7859496d82f17eae4d91177e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text50</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع پرداخت ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text50>
+            <Text51 Ref="93" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,0,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>d76770f1ea474af490e08ddc22a7d7c2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text51</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PPay.Pay}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="94" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text51>
+            <Text52 Ref="95" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>cba68ad389cc4cd1bda5e9fc34f93e06</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text52</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text52>
+            <Text53 Ref="96" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,6,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>8ae0a5ff7aa04f6aab91829ba9eb1edd</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text53</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PReceivee.Receivee}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="97" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text53>
+            <Text54 Ref="98" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,6,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>239eeab57690413294c0ee3e7965053a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text54</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع برداشت ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text54>
+            <Text55 Ref="99" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,6,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>68cd588d7ca946608be82ed9a4edcdb9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text55</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text55>
+            <Text56 Ref="100" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,12,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>26c942419cd94658b48cb2a1ecc84745</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text56</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>موجودی حساب:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text56>
+            <Text57 Ref="101" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,12,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>ddddecfcd0a84b26968a403f6040d6f5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text57</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text57>
+            <Text58 Ref="102" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,12,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>ce042e13b6e4449cb49b4fa7c0e74ce5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text58</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PPay.Pay - PReceivee.Receivee}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="103" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text58>
+            <Text59 Ref="104" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,24,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>fb5e04e2cde34c1fab4e49ba3bd621c6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text59</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PInsTotalAmount.InsTotalAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="105" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text59>
+            <Text60 Ref="106" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,24,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>51eef5a073a146c081a665fa4db7784d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text60</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text60>
+            <Text61 Ref="107" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,24,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>0604bee8822b45aeb54961c1f4dd1db6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text61</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع اقساط پرداختی:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text61>
+            <Text62 Ref="108" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,30,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>d2f77daa72b64166864c6dd20aad6585</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text62</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع اقساط مانده:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text62>
+            <Text63 Ref="109" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,30,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>33ef3669ce544eb9b08c7a39abc060af</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text63</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PInsRemaining.InsRemaining}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="110" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text63>
+            <Text64 Ref="111" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,30,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>105b28b802e74d2c80b94a1cfeed6159</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text64</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text64>
+            <Text65 Ref="112" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,18,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>982aad52c42a437f89d2eedb123cdd5e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text65</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع وام های دریافتی:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text65>
+            <Text66 Ref="113" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,18,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>165e80fa643f4854965a34cfaf2c06d8</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text66</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PAllLoanPay.AllLoanPay}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="114" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text66>
+            <Text67 Ref="115" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,18,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>0ab7f3562e8c425ba4c24a1fb18e3f45</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text67</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text67>
+            <Text74 Ref="116" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,36,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>397e0a5b710c4385a2f787ed86df0a0c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text74</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد وام های تسویه شده:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text74>
+            <Text75 Ref="117" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,42,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>2ea0a93e04fa4504aafc31a63b9b79e5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text75</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد وام های در گردش:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text75>
+            <Text76 Ref="118" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>34,48,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>e844f78f495f4ce9bced764cf540dfbd</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text76</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد کل وام ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text76>
+            <Text77 Ref="119" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,36,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>e603bdfa619147e7b521c47c8f1cfa73</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text77</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PLoanIsPayOff.LoanIsPayOff}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text77>
+            <Text78 Ref="120" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,42,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>9ba4b183cdff4e98ac505ec411a55082</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text78</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PLoanNotPayOff.LoanNotPayOff}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text78>
+            <Text80 Ref="121" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,48,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>37b3d7b656434219ac17a6f8385fc4f7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text80</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{PAllLoanNum.AllLoanNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text80>
+            <Text68 Ref="122" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>75,24,27,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>00486ab6a48a431590e2d5bc23294e44</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text68</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{MembershipFee}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="123" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text68>
+            <Text69 Ref="124" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>69,24,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3c005b614ef84fa3a5b941ec903c05a7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text69</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>ریال</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text69>
+            <Text70 Ref="125" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,24,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>2cc9d29323c6412fa976a8a5a930c6d6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text70</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>جمع حق عضویت ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text70>
+            <Text46 Ref="126" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>103,90,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text46</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>تعداد کل وام ها:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text46>
+            <Text49 Ref="127" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>71,90,14,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3abdb3bef56b4f3f9e5e4189743f527d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text49</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Text>{AllLoanNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text49>
+            <StartPointPrimitive1 Ref="128" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+              <ClientRectangle>69,0,0,0</ClientRectangle>
+              <Name>StartPointPrimitive1</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <ReferenceToGuid>f1f63c5b8c99408bbdf36bb99dd07083</ReferenceToGuid>
+            </StartPointPrimitive1>
+            <EndPointPrimitive1 Ref="129" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+              <ClientRectangle>70,96,0,0</ClientRectangle>
+              <Name>EndPointPrimitive1</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <ReferenceToGuid>f1f63c5b8c99408bbdf36bb99dd07083</ReferenceToGuid>
+            </EndPointPrimitive1>
+            <HorizontalLinePrimitive1 Ref="130" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,54,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="131" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Size>2</Size>
+              <StartCap Ref="132" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+            <HorizontalLinePrimitive2 Ref="133" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,48,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="134" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>31226e11415e4793aafdbc420693bb43</Guid>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="135" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+            <HorizontalLinePrimitive3 Ref="136" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,42,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="137" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>b742fe606c074cb7ac0df149d1d25467</Guid>
+              <Name>HorizontalLinePrimitive3</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="138" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive3>
+            <HorizontalLinePrimitive4 Ref="139" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,36,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="140" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>b520b473a01e41e289bca64880cd8cfa</Guid>
+              <Name>HorizontalLinePrimitive4</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="141" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive4>
+            <HorizontalLinePrimitive5 Ref="142" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,24,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="143" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>9d65bfbb2e74437c967aaa013d4539c4</Guid>
+              <Name>HorizontalLinePrimitive5</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="144" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive5>
+            <HorizontalLinePrimitive6 Ref="145" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,18,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="146" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>9a49bb66bc7742719372257e5dd17531</Guid>
+              <Name>HorizontalLinePrimitive6</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="147" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive6>
+            <HorizontalLinePrimitive7 Ref="148" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,12,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="149" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>7bbf5105c8464540ab274dc2fc7d753f</Guid>
+              <Name>HorizontalLinePrimitive7</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="150" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive7>
+            <HorizontalLinePrimitive8 Ref="151" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,6,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="152" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>fd292e86f11d4764bda435688a8e920d</Guid>
+              <Name>HorizontalLinePrimitive8</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="153" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive8>
+            <HorizontalLinePrimitive9 Ref="154" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,60,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="155" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>ec7243cd333b40b686681a54ddb6cc73</Guid>
+              <Name>HorizontalLinePrimitive9</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="156" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive9>
+            <HorizontalLinePrimitive10 Ref="157" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,66,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="158" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>6e53aeede11640f3b0d4f270b4aaa8cb</Guid>
+              <Name>HorizontalLinePrimitive10</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="159" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive10>
+            <HorizontalLinePrimitive11 Ref="160" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,72,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="161" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>1395091788244be3989d2cbb5c875622</Guid>
+              <Name>HorizontalLinePrimitive11</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="162" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive11>
+            <HorizontalLinePrimitive12 Ref="163" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,78,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="164" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>92b47d830601422ab64e7f18c81957d0</Guid>
+              <Name>HorizontalLinePrimitive12</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Size>2</Size>
+              <StartCap Ref="165" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive12>
+            <HorizontalLinePrimitive13 Ref="166" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,84,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="167" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>91928321218241cf8846ec7e258f4b29</Guid>
+              <Name>HorizontalLinePrimitive13</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="168" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive13>
+            <HorizontalLinePrimitive15 Ref="169" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>70,96,68,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="170" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>bd13346bdc29417c92341c4a1e5a2e62</Guid>
+              <Name>HorizontalLinePrimitive15</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="171" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive15>
+            <HorizontalLinePrimitive16 Ref="172" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,18,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="173" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>a45fce83a8d74454b80cad574545ab68</Guid>
+              <Name>HorizontalLinePrimitive16</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Size>2</Size>
+              <StartCap Ref="174" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive16>
+            <HorizontalLinePrimitive17 Ref="175" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,12,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="176" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>2a6ce23e1202455f8cdd40abb6e83036</Guid>
+              <Name>HorizontalLinePrimitive17</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="177" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive17>
+            <HorizontalLinePrimitive18 Ref="178" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,6,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="179" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>94efed3ff05246a4987de136789976fd</Guid>
+              <Name>HorizontalLinePrimitive18</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="180" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive18>
+            <HorizontalLinePrimitive19 Ref="181" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,36,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="182" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>da7b7086c37e4cd5828b8f6b575e23d4</Guid>
+              <Name>HorizontalLinePrimitive19</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Size>2</Size>
+              <StartCap Ref="183" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive19>
+            <HorizontalLinePrimitive20 Ref="184" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,54,70,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="185" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>acfecfab0e444ef8beeced1951db3ddf</Guid>
+              <Name>HorizontalLinePrimitive20</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="186" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive20>
+            <HorizontalLinePrimitive21 Ref="187" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,42,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="188" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>5e52fb27b72846738a46af35606c9708</Guid>
+              <Name>HorizontalLinePrimitive21</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="189" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive21>
+            <HorizontalLinePrimitive22 Ref="190" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,48,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="191" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>e01e5908d3ee4c3d95425235dde8b2ad</Guid>
+              <Name>HorizontalLinePrimitive22</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="192" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive22>
+            <HorizontalLinePrimitive23 Ref="193" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,24,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="194" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>0617dfdab34f4ef4be9399fd60561c15</Guid>
+              <Name>HorizontalLinePrimitive23</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="195" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive23>
+            <HorizontalLinePrimitive24 Ref="196" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,30,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="197" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>1f9b7d383aad465ab515d869e6eef3c4</Guid>
+              <Name>HorizontalLinePrimitive24</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="198" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive24>
+            <HorizontalLinePrimitive14 Ref="199" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,90,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="200" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>1d805f713f614e2d9d0bd9752227f87e</Guid>
+              <Name>HorizontalLinePrimitive14</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="201" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive14>
+            <HorizontalLinePrimitive25 Ref="202" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,54,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="203" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>5f9eb3469fce4af7a919463fbb9410bd</Guid>
+              <Name>HorizontalLinePrimitive25</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <Size>2</Size>
+              <StartCap Ref="204" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive25>
+            <HorizontalLinePrimitive26 Ref="205" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>69,30,69,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="206" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>1920ff0f6f4047a1baa1612992c1734f</Guid>
+              <Name>HorizontalLinePrimitive26</Name>
+              <Page isRef="13" />
+              <Parent isRef="39" />
+              <StartCap Ref="207" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive26>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>PerInfo</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataPerInfo</Name>
+          <Page isRef="13" />
+          <Parent isRef="13" />
+          <Sort isList="true" count="0" />
+        </DataPerInfo>
+        <VerticalLinePrimitive1 Ref="208" type="VerticalLinePrimitive" isKey="true">
+          <ClientRectangle>69,70,0.254,96</ClientRectangle>
+          <Color>Black</Color>
+          <EndCap Ref="209" type="Cap" isKey="true">
+            <Color>Black</Color>
+          </EndCap>
+          <Guid>f1f63c5b8c99408bbdf36bb99dd07083</Guid>
+          <Name>VerticalLinePrimitive1</Name>
+          <Page isRef="13" />
+          <Parent isRef="13" />
+          <Size>2</Size>
+          <StartCap Ref="210" type="Cap" isKey="true">
+            <Color>Black</Color>
+          </StartCap>
+        </VerticalLinePrimitive1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>466f84fe94fc42a8b5053fa41e413820</Guid>
+      <Margins>4.95,4.95,4.95,4.95</Margins>
+      <Name>Page1</Name>
+      <PageHeight>210</PageHeight>
+      <PageWidth>148</PageWidth>
+      <PaperSize>A5</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="211" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PreviewSettings>268435455</PreviewSettings>
+  <PrinterSettings Ref="212" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>10/2/2017 12:16:54 PM</ReportChanged>
+  <ReportCreated>2/23/2017 1:25:14 PM</ReportCreated>
+  <ReportFile>E:\project\C#\New folder\Loan\Loan\bin\Debug\Report\PerFDloan.mrt</ReportFile>
+  <ReportGuid>2cc4bf07daf4475aa34e8c4d71656a8e</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>Report</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2016.3.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+        
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

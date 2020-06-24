@@ -1,0 +1,93 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="Loan.Windows.WinFeeIncome"
+        mc:Ignorable="d"
+        Height="524" Width="695" WindowStartupLocation="CenterScreen" WindowStyle="None" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Loaded="Window_Loaded">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="درآمد/هزینه صندوق" FontSize="22" FontWeight="Bold" Margin="0" VerticalAlignment="Top" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10" d:IsLocked="True"/>
+
+        <GroupBox x:Name="GroupBox1" Header="درآمد/هزینه" FontWeight="Bold" Margin="20,45,0,0" FlowDirection="RightToLeft" BorderBrush="#FF192D6E" HorizontalAlignment="Left" Width="651" Height="200" VerticalAlignment="Top"/>
+
+        <DataGrid x:Name="DgdFeeIncome" Margin="20,250,0,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="dataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False" KeyboardNavigation.TabNavigation="Once" CanUserSortColumns="False" SelectionChanged="DgdFeeIncome_SelectionChanged" HorizontalAlignment="Left" Width="651" Height="215" VerticalAlignment="Top" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="نوع" Width="120" Binding="{Binding FeeIncomeType}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="تاریخ" Width="140" Binding="{Binding FeeIncomeDate}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkSlateGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="مبلغ" Width="160" Binding="{Binding FeeIncomeAmount,StringFormat={}{0:N0}}"  >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DimGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="توضیحات" Width="180" Binding="{Binding FeeIncomeDescription}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="LblAmount" Content="مبلغ:" HorizontalAlignment="Left" Margin="389,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="44,185,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <TextBox x:Name="TxtAmount"  Margin="435,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" MaxLength="17" Height="30" VerticalAlignment="Top" PreviewTextInput="NumberInput" TextChanged="TxtAmount_TextChanged" CommandManager.PreviewExecuted="DisablePaste" HorizontalAlignment="Left" Width="226"/>
+        <TextBox x:Name="TxtDescription" Margin="120,185,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="7" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="541"/>
+
+        <Button x:Name="BtnAdd" Content="ثبت" Margin="98,470,0,0" Style="{DynamicResource ButtonStyle1}" Click="BtnAdd_Click" HorizontalAlignment="Left" Width="120" TabIndex="7" IsDefault="True" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNew" Content="جدید" Margin="473,470,98,0" Style="{DynamicResource ButtonStyle1}" Click="BtnNew_Click" Height="30" VerticalAlignment="Top" TabIndex="8"/>
+        <Button x:Name="BtnEdit" Content="ویرایش" Margin="223,470,0,0" Style="{DynamicResource ButtonStyle1}" Height="30" VerticalAlignment="Top"  Click="BtnEdit_Click" TabIndex="9" HorizontalAlignment="Left" Width="120"/>
+        <Button x:Name="BtnDelete" Content="حذف" Margin="348,470,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="7" HorizontalAlignment="Left" Width="120" Click="BtnDelete_Click" Height="30" VerticalAlignment="Top"/>
+
+        <Label x:Name="LblRial" Content="ریال" HorizontalAlignment="Left" Margin="625,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblFeeIncomeType" Content="نوع:" HorizontalAlignment="Left" Margin="82,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblReceiptNumber" Content="شماره سند:" HorizontalAlignment="Left" Margin="350,150,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <TextBox x:Name="TxtReceiptNumber" Height="30" Margin="435,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" MaxLength="15" HorizontalAlignment="Left" Width="226"/>
+        <ComboBox x:Name="CboFeeIncomeType" HorizontalAlignment="Left" Margin="120,80,0,0" VerticalAlignment="Top" Width="225" Height="30" TabIndex="5">
+            <ComboBoxItem Content="" IsSelected="True"/>
+            <ComboBoxItem Content="درآمد"/>
+            <ComboBoxItem Content="هزینه"/>
+        </ComboBox>
+        <Label x:Name="LblPayType" Content="نوع پرداخت:" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <ComboBox x:Name="CboPayType" HorizontalAlignment="Left" Margin="120,150,0,0" VerticalAlignment="Top" Width="225" Height="30" TabIndex="5">
+            <ComboBoxItem Content="" IsSelected="True"/>
+            <ComboBoxItem Content="نقدی"/>
+            <ComboBoxItem Content="چک"/>
+            <ComboBoxItem Content="کارت خوان"/>
+            <ComboBoxItem Content="فیش بانکی"/>
+        </ComboBox>
+        <Label x:Name="LblDate" Content="تاریخ:" HorizontalAlignment="Left" Margin="71,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <persianDateControls:PersianDatePicker x:Name="TxtDate" HorizontalAlignment="Left" Margin="120,115,0,0" VerticalAlignment="Top" Height="30" Width="225" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="2" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate"/>
+
+    </Grid>
+</Window>

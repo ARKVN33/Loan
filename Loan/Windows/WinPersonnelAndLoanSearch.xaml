@@ -1,0 +1,126 @@
+﻿<Window x:Class="Loan.Windows.WinPersonnelAndLoanSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="665" Width="1010" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Loaded="Window_Loaded" >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="پرداخت اقساط" FontSize="22" FontWeight="Bold" Margin="0" VerticalAlignment="Top" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10" d:IsLocked="True"/>
+
+        <Rectangle HorizontalAlignment="Left" Height="30" Margin="30,110,0,0" Stroke="#FF192D6E" VerticalAlignment="Top" Width="946" RadiusY="7" RadiusX="7"/>
+
+        <GroupBox x:Name="GroupBox" Header="مشخصات عضو" FontWeight="Bold" Margin="20,80,0,0" FlowDirection="RightToLeft" BorderBrush="#FF192D6E" HorizontalAlignment="Left" Width="966" Height="290" VerticalAlignment="Top"/>
+        <GroupBox x:Name="GroupBox1" Header="مشخصات وام" FontWeight="Bold" Margin="20,375,0,0" FlowDirection="RightToLeft" BorderBrush="#FF192D6E" HorizontalAlignment="Left" Width="966" Height="226" VerticalAlignment="Top"/>
+
+        <Label x:Name="LblPersonnelSearch" Content="جست و جو عضو:" Margin="20,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblId" Content="شماره عضویت:" Margin="30,110,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerId" Margin="129,110,0,0" Height="30" VerticalAlignment="Top" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Left" Width="115" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblName" Content="نام:" Margin="244,110,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerFirstName" Margin="274,110,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Width="222" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblLastName" Content="نام خانوادگی:" Margin="496,110,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Width="89" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerLastName" Margin="585,110,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Width="223" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblNationalCode" Content="کد ملی:" Margin="808,110,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerNationalCode" Margin="861,110,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Width="115" Style="{DynamicResource LabelStyle1}"/>
+
+        <TextBox x:Name="TxtSearch" Height="30" Margin="140,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="0" MaxLength="50" TextChanged="TxtSearch_TextChanged" HorizontalAlignment="Left" Width="846"/>
+
+        <DataGrid x:Name="DgdPersonnel" Margin="30,145,0,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="dataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False" SelectionChanged="DgdPersonnel_SelectionChanged" CanUserSortColumns="False" KeyboardNavigation.TabNavigation="Once" Height="215" VerticalAlignment="Top" HorizontalAlignment="Left" Width="946">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="شماره عضویت" Width="120" Binding="{Binding PersonnelId}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام" Width="125" Binding="{Binding InfoFirstName}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkSlateGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام خانوادگی" Width="125" Binding="{Binding InfoLastName}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DimGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام پدر" Width="125" Binding="{Binding InfoFatherName}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="کد ملی" Width="110" Binding="{Binding InfoNationalCode}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="شماره موبایل" Width="110" Binding="{Binding InfoMobile}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="توضیحات" Width="180" Binding="{Binding InfoDescription}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DgdLoan" Margin="30,405,0,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="DgdLoan_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="946" KeyboardNavigation.TabNavigation="Once" CanUserSortColumns="False" Height="184" VerticalAlignment="Top" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="شماره وام" Width="70" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="تاریخ پرداخت" Width="100" Binding="{Binding LoanDate}"/>
+
+                <DataGridTextColumn Header="نوع وام" Width="110" Binding="{Binding LoanType}"/>
+
+                <DataGridTextColumn Header="مبلغ وام" Width="125" Binding="{Binding LoanAmount,StringFormat={}{0:N0}}"/>
+
+                <DataGridTextColumn Header="نوع کارمزد" Width="130" Binding="{Binding WageType}"/>
+
+                <DataGridTextColumn Header="مبلغ کارمزد" Width="125" Binding="{Binding WageAmount,StringFormat={}{0:N0}}"/>
+
+                <DataGridTextColumn Header="تعداد اقساط" Width="85" Binding="{Binding LoanInstallmentNum}"/>
+
+                <DataGridTextColumn Header="توضیحات" Width="150" Binding="{Binding LoanDescription}"/>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="BtnPayInstallment" Content="پرداخت اقساط" Margin="443,606,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="1" IsDefault="True" Click="BtnPayInstallment_Click" HorizontalAlignment="Left" Width="120" Height="35" VerticalAlignment="Top"/>
+        <Button x:Name="BtnEditInstallment" Content="ویرایش اقساط" Margin="442,606,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="2" IsDefault="True" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Visibility="Hidden"/>
+        <Button x:Name="BtnDeleteInstallment" Content="حذف اقساط" Margin="442,606,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="3" IsDefault="True" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Visibility="Hidden"/>
+        <Button x:Name="BtnRepIns" Content="چاپ دفترچه قسط" Margin="442,606,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="1" IsDefault="True" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="BtnRepIns_Click" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

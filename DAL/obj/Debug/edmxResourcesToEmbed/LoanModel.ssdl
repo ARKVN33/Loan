@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBLOANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account_Personnel_Id" Type="int" />
+    <Property Name="Account_PaymentType_Id" Type="tinyint" />
+    <Property Name="Account_TransactionType_Id" Type="tinyint" />
+    <Property Name="AccountAmount" Type="bigint" />
+    <Property Name="AccountReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="AccountCurrentBalance" Type="bigint" />
+    <Property Name="AccountPaymentDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="AccountDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblAccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblBankAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankAccountBankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankAccountBranchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankAccountNum" Type="nvarchar" MaxLength="20" />
+    <Property Name="BankAccountCardNum" Type="nvarchar" MaxLength="20" />
+    <Property Name="BankAccountInitialBalance" Type="bigint" />
+    <Property Name="BankAccountDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblBlockType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlockType" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblChargeMonthly">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChargeMonthly_Personnel_Id" Type="int" />
+    <Property Name="ChargeMonthlyStartDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChargeMonthlyEndDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChargeMonthlyCharge" Type="bigint" />
+    <Property Name="ChargeMonthlyDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblChMoPay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChMoPay_ChargeMonthly_Id" Type="int" />
+    <Property Name="ChMoPay_Account_Id" Type="int" />
+    <Property Name="ChMoPayDueAmount" Type="bigint" />
+    <Property Name="ChMoPayDueDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChMoPayDelayMonth" Type="smallint" />
+  </EntityType>
+  <EntityType Name="tblFeeIncome">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeeIncome_FeeIncomeType_Id" Type="tinyint" />
+    <Property Name="FeeIncome_PaymentType_Id" Type="tinyint" />
+    <Property Name="FeeIncomeDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="FeeIncomeAmount" Type="bigint" />
+    <Property Name="FeeIncomeReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="FeeIncomeDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblFeeIncomeType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeeIncomeType" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblGuaranteeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuaranteeType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblGuarantor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guarantor_Loan_Id" Type="int" />
+    <Property Name="Guarantor_Info_Id" Type="int" />
+    <Property Name="Guarantor_GuaranteeType_Id" Type="tinyint" />
+    <Property Name="Guarantor_BlockType_Id" Type="tinyint" />
+    <Property Name="GuarantorReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="GuarantorAmount" Type="bigint" />
+    <Property Name="GuarantorBlockAmount" Type="bigint" />
+    <Property Name="GuarantorBlock" Type="bit" />
+    <Property Name="GuarantorDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InfoFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoFatherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoNationalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoGender" Type="nvarchar" MaxLength="1" />
+    <Property Name="InfoBirthDay" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoBirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoMarried" Type="nvarchar" MaxLength="1" />
+    <Property Name="InfoTell" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoMobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="InfoPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoAddress" Type="nvarchar(max)" />
+    <Property Name="InfoJobName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoJobPlaceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoJobTell" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoJobFax" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoJobAddress" Type="nvarchar(max)" />
+    <Property Name="InfoImage" Type="nvarchar(max)" />
+    <Property Name="InfoDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblInstallment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Installment_Loan_Id" Type="int" />
+    <Property Name="Installment_PaymentType_Id" Type="tinyint" />
+    <Property Name="InstallmentDueAmount" Type="bigint" />
+    <Property Name="InstallmentAmount" Type="bigint" />
+    <Property Name="InstallmentReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="InstallmentTotalPaid" Type="bigint" />
+    <Property Name="InstallmentRemaining" Type="bigint" />
+    <Property Name="InstallmentPaymentDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="InstallmentDueDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="InstallmentDelayDay" Type="smallint" />
+    <Property Name="InstallmentDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblInstitution">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Institution" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblIntroducer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Introducer_Loan_Id" Type="int" />
+    <Property Name="Introducer_IntroducerType_Id" Type="tinyint" />
+    <Property Name="Introducer_Info_Id" Type="int" />
+    <Property Name="Introducer_Institution_Id" Type="smallint" />
+    <Property Name="IntroducerDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblIntroducerType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IntroducerType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblLicense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AppLicense" Type="nvarchar" MaxLength="40" />
+    <Property Name="AppVersion" Type="nvarchar" MaxLength="7" />
+  </EntityType>
+  <EntityType Name="tblLoan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Loan_Personnel_Id" Type="int" />
+    <Property Name="Loan_LoanType_Id" Type="tinyint" />
+    <Property Name="LoanAmount" Type="bigint" />
+    <Property Name="LoanDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="LoanInstallmentNum" Type="tinyint" />
+    <Property Name="LoanInstallmentFirstPayDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="LoanInstallmentInterspace" Type="tinyint" />
+    <Property Name="LoanPayOff" Type="bit" />
+    <Property Name="LoanDescription" Type="nvarchar(max)" />
+    <Property Name="Loan_Account_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLoanFund">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoanFundName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LoanFundTell1" Type="nvarchar" MaxLength="11" />
+    <Property Name="LoanFundTell2" Type="nvarchar" MaxLength="11" />
+    <Property Name="LoanFundFax" Type="nvarchar" MaxLength="11" />
+    <Property Name="LoanFundEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="LoanFundPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="LoanFundAddress" Type="nvarchar(max)" />
+    <Property Name="LoanFundInitialBalance" Type="bigint" />
+    <Property Name="LoanFundPenalty" Type="bigint" />
+    <Property Name="LoanFundWagePercent" Type="nvarchar" MaxLength="3" />
+    <Property Name="LoanFundLogo" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblLoanType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoanType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblPaymentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblPerAccType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PerAccType_Personnel_Id" Type="int" />
+    <Property Name="PerAccType_AccountType_Id" Type="int" />
+    <Property Name="PerAccTypeAccountNumber" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="tblPersonnel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Personnel_Info_Id" Type="int" />
+    <Property Name="PersonnelId" Type="nvarchar" MaxLength="10" />
+    <Property Name="PersonnelMembership" Type="nvarchar" MaxLength="1" />
+    <Property Name="PersonnelMembershipDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="PersonnelBARCode" Type="nvarchar(max)" />
+    <Property Name="PersonnelQRCode" Type="nvarchar(max)" />
+    <Property Name="PersonnelSignature" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblPostType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblSecurityAccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Time" Type="nvarchar" MaxLength="19" />
+    <Property Name="Counter" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tblSecurityQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SecurityQuestion" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblSundry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RegisteredAdminPassword" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblTransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_PostType_Id" Type="tinyint" />
+    <Property Name="User_SecurityQuestion_Id" Type="tinyint" />
+    <Property Name="UserFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="60" />
+    <Property Name="UserMobileNumber" Type="nvarchar" MaxLength="11" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="UserAnswer" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserRegistrationDate" Type="nvarchar" MaxLength="19" />
+    <Property Name="UserImage" Type="nvarchar(max)" />
+    <Property Name="UserDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblWage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Wage_Loan_Id" Type="int" />
+    <Property Name="Wage_WageType_Id" Type="tinyint" />
+    <Property Name="Wage_WageCalculationType_Id" Type="tinyint" />
+    <Property Name="WagePercent" Type="nvarchar" MaxLength="4" />
+    <Property Name="WageAmount" Type="bigint" />
+    <Property Name="WageDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblWageCalculationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WageCalculationType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblWageType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WageType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewAccountInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewAccountInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Account_TransactionType_Id" Type="tinyint" />
+    <Property Name="AccountAmount" Type="bigint" />
+    <Property Name="AccountReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="AccountCurrentBalance" Type="bigint" />
+    <Property Name="AccountPaymentDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="AccountDescription" Type="nvarchar(max)" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Account_PaymentType_Id" Type="tinyint" />
+    <Property Name="Account_Personnel_Id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewChMoPayInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewChMoPayInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Account_Personnel_Id" Type="int" />
+    <Property Name="Account_PaymentType_Id" Type="tinyint" />
+    <Property Name="Account_TransactionType_Id" Type="tinyint" />
+    <Property Name="AccountAmount" Type="bigint" />
+    <Property Name="AccountReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="AccountCurrentBalance" Type="bigint" />
+    <Property Name="AccountPaymentDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="AccountDescription" Type="nvarchar(max)" />
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="ChMoPay_ChargeMonthly_Id" Type="int" />
+    <Property Name="ChMoPayDueAmount" Type="bigint" />
+    <Property Name="ChMoPayDueDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChMoPayDelayMonth" Type="smallint" />
+    <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewFeeIncomeInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewFeeIncomeInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="FeeIncome_FeeIncomeType_Id" Type="tinyint" />
+    <Property Name="FeeIncome_PaymentType_Id" Type="tinyint" />
+    <Property Name="FeeIncomeDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="FeeIncomeAmount" Type="bigint" />
+    <Property Name="FeeIncomeReceiptNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="FeeIncomeDescription" Type="nvarchar(max)" />
+    <Property Name="FeeIncomeType" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewInsLoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewInsLoan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Loan_Personnel_Id" Type="int" />
+    <Property Name="LoanPayOff" Type="bit" />
+    <Property Name="InstallmentDueAmount" Type="bigint" />
+    <Property Name="InstallmentAmount" Type="bigint" />
+    <Property Name="Guarantor_Info_Id" Type="int" />
+    <Property Name="Guarantor_BlockType_Id" Type="tinyint" />
+    <Property Name="GuarantorBlock" Type="bit" />
+    <Property Name="GuarantorBlockAmount" Type="bigint" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewLoanInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewLoanInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Loan_Personnel_Id" Type="int" />
+    <Property Name="Loan_Account_Id" Type="int" />
+    <Property Name="Loan_LoanType_Id" Type="tinyint" />
+    <Property Name="LoanAmount" Type="bigint" />
+    <Property Name="LoanDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="LoanInstallmentNum" Type="tinyint" />
+    <Property Name="LoanInstallmentFirstPayDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="LoanInstallmentInterspace" Type="tinyint" />
+    <Property Name="LoanPayOff" Type="bit" />
+    <Property Name="LoanDescription" Type="nvarchar(max)" />
+    <Property Name="LoanType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Wage_WageType_Id" Type="tinyint" />
+    <Property Name="Wage_WageCalculationType_Id" Type="tinyint" />
+    <Property Name="WagePercent" Type="nvarchar" MaxLength="4" />
+    <Property Name="WageAmount" Type="bigint" />
+    <Property Name="WageDescription" Type="nvarchar(max)" />
+    <Property Name="WageType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbLoan.dbo.viewPersonnelInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewPersonnelInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="PersonnelId" Type="nvarchar" MaxLength="10" />
+    <Property Name="PersonnelMembership" Type="nvarchar" MaxLength="1" />
+    <Property Name="PersonnelMembershipDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="PersonnelBARCode" Type="nvarchar(max)" />
+    <Property Name="PersonnelQRCode" Type="nvarchar(max)" />
+    <Property Name="InfoNationalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoFatherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoGender" Type="nvarchar" MaxLength="1" />
+    <Property Name="InfoBirthDay" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoBirthPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoMarried" Type="nvarchar" MaxLength="1" />
+    <Property Name="InfoTell" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoMobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="InfoPostalCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InfoAddress" Type="nvarchar(max)" />
+    <Property Name="InfoJobName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoJobPlaceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="InfoJobTell" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoJobFax" Type="nvarchar" MaxLength="11" />
+    <Property Name="InfoJobAddress" Type="nvarchar(max)" />
+    <Property Name="InfoImage" Type="nvarchar(max)" />
+    <Property Name="InfoDescription" Type="nvarchar(max)" />
+    <Property Name="PersonnelSignature" Type="nvarchar(max)" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Personnel_Info_Id" Type="int" />
+  </EntityType>
+  <Function Name="spAllData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spAutoAccountId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spAutoPersonnelId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spPerCanGetMoney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PersonnelId" Type="int" Mode="In" />
+    <Parameter Name="InfoId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spPeriodAllData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="EndDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelectAccountInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PersonnelId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelectChMoPayInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PersonnelId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelectFeeIncomeInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spSelectLoanInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PersonnelId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelectPersonnelInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spSortAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Account_Personnel_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateAccountCurrentBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PersonnelId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DBLOANModelStoreContainer">
+    <EntitySet Name="tblAccount" EntityType="Self.tblAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAccountType" EntityType="Self.tblAccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBankAccount" EntityType="Self.tblBankAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBlockType" EntityType="Self.tblBlockType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblChargeMonthly" EntityType="Self.tblChargeMonthly" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblChMoPay" EntityType="Self.tblChMoPay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFeeIncome" EntityType="Self.tblFeeIncome" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFeeIncomeType" EntityType="Self.tblFeeIncomeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGuaranteeType" EntityType="Self.tblGuaranteeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGuarantor" EntityType="Self.tblGuarantor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInfo" EntityType="Self.tblInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInstallment" EntityType="Self.tblInstallment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInstitution" EntityType="Self.tblInstitution" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblIntroducer" EntityType="Self.tblIntroducer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblIntroducerType" EntityType="Self.tblIntroducerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLicense" EntityType="Self.tblLicense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLoan" EntityType="Self.tblLoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLoanFund" EntityType="Self.tblLoanFund" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLoanType" EntityType="Self.tblLoanType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPaymentType" EntityType="Self.tblPaymentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerAccType" EntityType="Self.tblPerAccType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPersonnel" EntityType="Self.tblPersonnel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPostType" EntityType="Self.tblPostType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSecurityAccess" EntityType="Self.tblSecurityAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSecurityQuestion" EntityType="Self.tblSecurityQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSundry" EntityType="Self.tblSundry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTransactionType" EntityType="Self.tblTransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWage" EntityType="Self.tblWage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWageCalculationType" EntityType="Self.tblWageCalculationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWageType" EntityType="Self.tblWageType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="viewAccountInfo" EntityType="Self.viewAccountInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewAccountInfo].[Id] AS [Id], 
+    [viewAccountInfo].[Account_TransactionType_Id] AS [Account_TransactionType_Id], 
+    [viewAccountInfo].[AccountAmount] AS [AccountAmount], 
+    [viewAccountInfo].[AccountReceiptNumber] AS [AccountReceiptNumber], 
+    [viewAccountInfo].[AccountCurrentBalance] AS [AccountCurrentBalance], 
+    [viewAccountInfo].[AccountPaymentDate] AS [AccountPaymentDate], 
+    [viewAccountInfo].[AccountDescription] AS [AccountDescription], 
+    [viewAccountInfo].[TransactionType] AS [TransactionType], 
+    [viewAccountInfo].[PaymentType] AS [PaymentType], 
+    [viewAccountInfo].[Account_PaymentType_Id] AS [Account_PaymentType_Id], 
+    [viewAccountInfo].[Account_Personnel_Id] AS [Account_Personnel_Id]
+    FROM [dbo].[viewAccountInfo] AS [viewAccountInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewChMoPayInfo" EntityType="Self.viewChMoPayInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewChMoPayInfo].[Id] AS [Id], 
+    [viewChMoPayInfo].[Account_Personnel_Id] AS [Account_Personnel_Id], 
+    [viewChMoPayInfo].[Account_PaymentType_Id] AS [Account_PaymentType_Id], 
+    [viewChMoPayInfo].[Account_TransactionType_Id] AS [Account_TransactionType_Id], 
+    [viewChMoPayInfo].[AccountAmount] AS [AccountAmount], 
+    [viewChMoPayInfo].[AccountReceiptNumber] AS [AccountReceiptNumber], 
+    [viewChMoPayInfo].[AccountCurrentBalance] AS [AccountCurrentBalance], 
+    [viewChMoPayInfo].[AccountPaymentDate] AS [AccountPaymentDate], 
+    [viewChMoPayInfo].[AccountDescription] AS [AccountDescription], 
+    [viewChMoPayInfo].[Expr1] AS [Expr1], 
+    [viewChMoPayInfo].[ChMoPay_ChargeMonthly_Id] AS [ChMoPay_ChargeMonthly_Id], 
+    [viewChMoPayInfo].[ChMoPayDueAmount] AS [ChMoPayDueAmount], 
+    [viewChMoPayInfo].[ChMoPayDueDate] AS [ChMoPayDueDate], 
+    [viewChMoPayInfo].[ChMoPayDelayMonth] AS [ChMoPayDelayMonth], 
+    [viewChMoPayInfo].[TransactionType] AS [TransactionType], 
+    [viewChMoPayInfo].[PaymentType] AS [PaymentType]
+    FROM [dbo].[viewChMoPayInfo] AS [viewChMoPayInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewFeeIncomeInfo" EntityType="Self.viewFeeIncomeInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewFeeIncomeInfo].[Id] AS [Id], 
+    [viewFeeIncomeInfo].[FeeIncome_FeeIncomeType_Id] AS [FeeIncome_FeeIncomeType_Id], 
+    [viewFeeIncomeInfo].[FeeIncome_PaymentType_Id] AS [FeeIncome_PaymentType_Id], 
+    [viewFeeIncomeInfo].[FeeIncomeDate] AS [FeeIncomeDate], 
+    [viewFeeIncomeInfo].[FeeIncomeAmount] AS [FeeIncomeAmount], 
+    [viewFeeIncomeInfo].[FeeIncomeReceiptNumber] AS [FeeIncomeReceiptNumber], 
+    [viewFeeIncomeInfo].[FeeIncomeDescription] AS [FeeIncomeDescription], 
+    [viewFeeIncomeInfo].[FeeIncomeType] AS [FeeIncomeType]
+    FROM [dbo].[viewFeeIncomeInfo] AS [viewFeeIncomeInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewInsLoan" EntityType="Self.viewInsLoan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewInsLoan].[Loan_Personnel_Id] AS [Loan_Personnel_Id], 
+    [viewInsLoan].[LoanPayOff] AS [LoanPayOff], 
+    [viewInsLoan].[InstallmentDueAmount] AS [InstallmentDueAmount], 
+    [viewInsLoan].[InstallmentAmount] AS [InstallmentAmount], 
+    [viewInsLoan].[Guarantor_Info_Id] AS [Guarantor_Info_Id], 
+    [viewInsLoan].[Guarantor_BlockType_Id] AS [Guarantor_BlockType_Id], 
+    [viewInsLoan].[GuarantorBlock] AS [GuarantorBlock], 
+    [viewInsLoan].[GuarantorBlockAmount] AS [GuarantorBlockAmount], 
+    [viewInsLoan].[Id] AS [Id]
+    FROM [dbo].[viewInsLoan] AS [viewInsLoan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewLoanInfo" EntityType="Self.viewLoanInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewLoanInfo].[Id] AS [Id], 
+    [viewLoanInfo].[Loan_Personnel_Id] AS [Loan_Personnel_Id], 
+    [viewLoanInfo].[Loan_Account_Id] AS [Loan_Account_Id], 
+    [viewLoanInfo].[Loan_LoanType_Id] AS [Loan_LoanType_Id], 
+    [viewLoanInfo].[LoanAmount] AS [LoanAmount], 
+    [viewLoanInfo].[LoanDate] AS [LoanDate], 
+    [viewLoanInfo].[LoanInstallmentNum] AS [LoanInstallmentNum], 
+    [viewLoanInfo].[LoanInstallmentFirstPayDate] AS [LoanInstallmentFirstPayDate], 
+    [viewLoanInfo].[LoanInstallmentInterspace] AS [LoanInstallmentInterspace], 
+    [viewLoanInfo].[LoanPayOff] AS [LoanPayOff], 
+    [viewLoanInfo].[LoanDescription] AS [LoanDescription], 
+    [viewLoanInfo].[LoanType] AS [LoanType], 
+    [viewLoanInfo].[Wage_WageType_Id] AS [Wage_WageType_Id], 
+    [viewLoanInfo].[Wage_WageCalculationType_Id] AS [Wage_WageCalculationType_Id], 
+    [viewLoanInfo].[WagePercent] AS [WagePercent], 
+    [viewLoanInfo].[WageAmount] AS [WageAmount], 
+    [viewLoanInfo].[WageDescription] AS [WageDescription], 
+    [viewLoanInfo].[WageType] AS [WageType]
+    FROM [dbo].[viewLoanInfo] AS [viewLoanInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewPersonnelInfo" EntityType="Self.viewPersonnelInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewPersonnelInfo].[PersonnelId] AS [PersonnelId], 
+    [viewPersonnelInfo].[PersonnelMembership] AS [PersonnelMembership], 
+    [viewPersonnelInfo].[PersonnelMembershipDate] AS [PersonnelMembershipDate], 
+    [viewPersonnelInfo].[PersonnelBARCode] AS [PersonnelBARCode], 
+    [viewPersonnelInfo].[PersonnelQRCode] AS [PersonnelQRCode], 
+    [viewPersonnelInfo].[InfoNationalCode] AS [InfoNationalCode], 
+    [viewPersonnelInfo].[InfoFirstName] AS [InfoFirstName], 
+    [viewPersonnelInfo].[InfoLastName] AS [InfoLastName], 
+    [viewPersonnelInfo].[InfoFatherName] AS [InfoFatherName], 
+    [viewPersonnelInfo].[InfoCode] AS [InfoCode], 
+    [viewPersonnelInfo].[InfoGender] AS [InfoGender], 
+    [viewPersonnelInfo].[InfoBirthDay] AS [InfoBirthDay], 
+    [viewPersonnelInfo].[InfoBirthPlace] AS [InfoBirthPlace], 
+    [viewPersonnelInfo].[InfoMarried] AS [InfoMarried], 
+    [viewPersonnelInfo].[InfoTell] AS [InfoTell], 
+    [viewPersonnelInfo].[InfoMobile] AS [InfoMobile], 
+    [viewPersonnelInfo].[InfoEmail] AS [InfoEmail], 
+    [viewPersonnelInfo].[InfoPostalCode] AS [InfoPostalCode], 
+    [viewPersonnelInfo].[InfoAddress] AS [InfoAddress], 
+    [viewPersonnelInfo].[InfoJobName] AS [InfoJobName], 
+    [viewPersonnelInfo].[InfoJobPlaceName] AS [InfoJobPlaceName], 
+    [viewPersonnelInfo].[InfoJobTell] AS [InfoJobTell], 
+    [viewPersonnelInfo].[InfoJobFax] AS [InfoJobFax], 
+    [viewPersonnelInfo].[InfoJobAddress] AS [InfoJobAddress], 
+    [viewPersonnelInfo].[InfoImage] AS [InfoImage], 
+    [viewPersonnelInfo].[InfoDescription] AS [InfoDescription], 
+    [viewPersonnelInfo].[PersonnelSignature] AS [PersonnelSignature], 
+    [viewPersonnelInfo].[Id] AS [Id], 
+    [viewPersonnelInfo].[Personnel_Info_Id] AS [Personnel_Info_Id]
+    FROM [dbo].[viewPersonnelInfo] AS [viewPersonnelInfo]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,323 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="Loan.Windows.WinLoan"
+        mc:Ignorable="d"
+        Height="615" Width="960" WindowStartupLocation="CenterScreen" WindowStyle="None" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Loaded="Window_Loaded" >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="پرداخت وام" FontSize="22" FontWeight="Bold" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" Width="956" VerticalAlignment="Top" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10" d:IsLocked="True"/>
+
+        <Rectangle Height="30" Margin="20,45,0,0" Stroke="#FF192D6E" VerticalAlignment="Top" RadiusY="7" RadiusX="7" HorizontalAlignment="Left" Width="916"/>
+
+        <Label x:Name="LblId" Content="شماره عضویت:" Margin="20,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerId" Margin="120,45,0,0" Height="30" VerticalAlignment="Top" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Width="115"/>
+        <Label x:Name="LblName" Content="نام:" Margin="235,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerFirstName"  Margin="264,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="206"/>
+        <Label x:Name="LblLastName" Content="نام خانوادگی:" Margin="470,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerLastName" Margin="560,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="202"/>
+        <Label x:Name="LblNationalCode" Content="کد ملی:" Margin="762,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerNationalCode" Margin="821,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="115"/>
+
+        <TabControl Height="255" Margin="20,80,0,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="#FF192D6E" BorderThickness="2" HorizontalAlignment="Left" Width="916">
+            <TabItem x:Name="TabLoan" Header="وام" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+
+                    <Label x:Name="LblLoanType" Content="نوع وام:" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblLoanDate" Content="تاریخ پرداخت:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblLoanAmount" Content="مبلغ وام:" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblInstallmentNum" Content="تعداد اقساط:" HorizontalAlignment="Left" Margin="685,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblInstallmentFirstPayDate" Content="تاریخ اولین قسط:" HorizontalAlignment="Left" Margin="344,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblInstallmentInterspace" Content="فاصله بین اقساط:" HorizontalAlignment="Left" Margin="656,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblLoanDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="35,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtLoanAmount" Margin="111,45,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="16" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"  PreviewTextInput="NumberInput" TextChanged="TxtLoanAmount_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtInstallmentNum" HorizontalAlignment="Left" Height="30" Margin="777,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="2" PreviewTextInput="NumberInput" TextChanged="TxtInstallmentNum_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtInstallmentInterspace" HorizontalAlignment="Left" Height="30" Margin="777,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="90" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" MaxLength="2" PreviewTextInput="NumberInput" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtLoanDescription" Margin="111,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="7" Height="86" VerticalAlignment="Top" HorizontalAlignment="Left" Width="787"/>
+
+                    <persianDateControls:PersianDatePicker x:Name="TxtLoanDate" HorizontalAlignment="Left" Margin="111,80,0,0" VerticalAlignment="Top" Height="30" Width="200" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="2" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate"/>
+                    <persianDateControls:PersianDatePicker x:Name="TxtInstallmentFirstPayDate" HorizontalAlignment="Left" Margin="464,80,0,0" VerticalAlignment="Top" Height="30" Width="187" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="5" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate"/>
+
+                    <ComboBox x:Name="CboLoanType" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top" Width="200" Height="30" TabIndex="1" SelectionChanged="CboLoanType_SelectionChanged" >
+                        <ComboBoxItem Content="" IsSelected="True"/>
+                        <ComboBoxItem Content="اقساطی"/>
+                        <ComboBoxItem Content="مضاربه ای"/>
+                        <ComboBoxItem Content="ضروری"/>
+                    </ComboBox>
+
+                    <Button x:Name="BtnUp" Content="▲" Margin="847,45,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnUp_Click"/>
+                    <Button x:Name="BtnDown" Content="▼" Margin="847,60,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnDown_Click"/>
+                    <Button x:Name="BtnUp1" Content="▲" Margin="847,80,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnUp1_Click"/>
+                    <Button x:Name="BtnDown1" Content="▼" Margin="847,95,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnDown1_Click"/>
+                    <Label x:Name="LblRial" Content="ریال" HorizontalAlignment="Left" Margin="275,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblMonth" Content="ماه" HorizontalAlignment="Left" Margin="871,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblLoanPenalty" Content="جریمه دیر کرد روزانه:" HorizontalAlignment="Left" Margin="316,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtLoanPenalty" Margin="464,45,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="16" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="187"  PreviewTextInput="NumberInput" IsEnabled="False"/>
+                    <Label x:Name="LblRial12" Content="ریال" HorizontalAlignment="Left" Margin="615,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabWage" Header="کارمزد" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+
+                    <Label x:Name="LblWageType" Content="نوع کارمزد:" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblWageCalculationType" Content="نوع محاسبه کارمزد:" HorizontalAlignment="Left" Margin="358,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblWagePercent" Content="درصد:" HorizontalAlignment="Left" Margin="744,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblWageAmount" Content="مبلغ کارمزد:" HorizontalAlignment="Left" Margin="18,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblTotalDebt" Content="مجموع بدهی:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblTotalPay" Content="خالص پرداختی:" HorizontalAlignment="Left" Margin="381,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblWageDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="33,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtWagePercent" Height="30" Margin="798,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="3" PreviewTextInput="NumberInput" TextChanged="TxtWagePercent_TextChanged" CommandManager.PreviewExecuted="DisablePaste" HorizontalAlignment="Left" Width="100" Visibility="Hidden"/>
+                    <TextBox x:Name="TxtWageAmount" Margin="109,45,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="17" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"  PreviewTextInput="NumberInput" TextChanged="TxtWageAmount_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtTotalDebt" Margin="109,80,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"  PreviewTextInput="NumberInput" IsEnabled="False" TextChanged="TxtTotalDebt_TextChanged"/>
+                    <TextBox x:Name="TxtTotalPay" Margin="493,80,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"  PreviewTextInput="NumberInput" IsEnabled="False" TextChanged="TxtTotalPay_TextChanged"/>
+                    <TextBox x:Name="TxtWageDescription" Margin="109,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" Height="86" VerticalAlignment="Top" HorizontalAlignment="Left" Width="789"/>
+
+                    <ComboBox x:Name="CboWageType" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top" Width="224" Height="30" TabIndex="1" SelectionChanged="CboWageType_SelectionChanged">
+                        <ComboBoxItem Content="" IsSelected="True"/>
+                        <ComboBoxItem Content="بدون کارمزد"/>
+                        <ComboBoxItem Content="کسر از مبلغ وام"/>
+                        <ComboBoxItem Content="در اولین قسط"/>
+                        <ComboBoxItem Content="طی تمام اقساط"/>
+                        <ComboBoxItem Content="در آخرین قسط"/>
+                    </ComboBox>
+                    <ComboBox x:Name="CboWageCalculationType" Margin="493,10,0,0" VerticalAlignment="Top" Height="30" TabIndex="2" HorizontalAlignment="Left" Width="224" SelectionChanged="CboWageCalculationType_SelectionChanged">
+                        <ComboBoxItem Content="" IsSelected="True"/>
+                        <ComboBoxItem Content="تعیین مبلغ"/>
+                        <ComboBoxItem Content="درصدی"/>
+                    </ComboBox>
+
+                    <Button x:Name="BtnUp2" Content="▲" Margin="878,10,0,0" FontSize="10" Height="15" VerticalAlignment="Top" Click="BtnUp2_Click" HorizontalAlignment="Left" Width="20" Visibility="Hidden"/>
+                    <Button x:Name="BtnDown2" Content="▼" Margin="878,25,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnDown2_Click" Visibility="Hidden"/>
+                    <Label x:Name="LblRial2" Content="ریال" HorizontalAlignment="Left" Margin="297,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblRial4" Content="ریال" Margin="297,80,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblRial5" Content="ریال" Margin="681,80,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabInstallment" Header="اقساط" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E" GotFocus="TabInstallment_GotFocus">
+                <Grid Background="Transparent">
+
+                    <Border BorderBrush="#FF192D6E" BorderThickness="2" HorizontalAlignment="Left" Height="101" Margin="10,10,0,0" VerticalAlignment="Top" Width="182" CornerRadius="5"/>
+
+                    <Border BorderBrush="#FF192D6E" BorderThickness="2" Height="85" Margin="10,116,380,0" VerticalAlignment="Top" CornerRadius="5"/>
+
+                    <DataGrid x:Name="DgdInstallment" Margin="533,10,10,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="dataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False"  KeyboardNavigation.TabNavigation="Once" CanUserSortColumns="False" Height="191" VerticalAlignment="Top" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" DataContextChanged="dataGrid_DataContextChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="تاریخ سررسید" Width="140" Binding="{Binding DueDate}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}" >
+                                        <Setter Property="Foreground" Value="DarkSlateGray"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="مبلغ قسط" Width="170" Binding="{Binding DueAmount}"  >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}" >
+                                        <Setter Property="Foreground" Value="DimGray"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="LblInstallmentAmount" Content="مبلغ هر قسط:" HorizontalAlignment="Left" Margin="52,125,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtInstallmentAmount" Margin="153,125,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" MaxLength="17" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"  PreviewTextInput="NumberInput" IsEnabled="False" TextChanged="TxtInstallmentAmount_TextChanged"/>
+                    <Label x:Name="LblRial1" Content="ریال" Margin="317,125,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblInstallmentWage" Content="کارمزد در هر قسط:" HorizontalAlignment="Left" Margin="20,161,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblWageNum" Content="×  تعداد" Margin="353,161,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtInstallmentWage" Margin="153,161,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" HorizontalAlignment="Left" Width="200"  PreviewTextInput="NumberInput" IsEnabled="False" TextChanged="TxtInstallmentWage_TextChanged" Height="30" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtWageNum" Margin="412,161,390,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" Height="30" VerticalAlignment="Top"  PreviewTextInput="NumberInput" IsEnabled="False"/>
+                    <Label x:Name="LblRial3" Content="ریال" Margin="317,161,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblInsRound" Content="گرد کردن:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtInsRound" HorizontalAlignment="Left" Height="30" Margin="99,20,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="83" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="1" PreviewTextInput="NumberInput" TextChanged="TxtInsRound_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <Button x:Name="BtnUp3" Content="▲" Margin="162,20,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnUp3_Click"/>
+                    <Button x:Name="BtnDown3" Content="▼" Margin="162,35,0,0" FontSize="10" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" Click="BtnDown3_Click"/>
+                    <Button x:Name="BtnCreatIns" Content="محاسبه اقساط" Margin="20,55,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="162" TabIndex="8" Height="45" VerticalAlignment="Top" Click="BtnCreatIns_Click"/>
+                    <Border BorderBrush="#FF192D6E" BorderThickness="2" HorizontalAlignment="Left" Height="101" Margin="197,10,0,0" VerticalAlignment="Top" Width="331" CornerRadius="5"/>
+                    <TextBlock Margin="208,15,0,0" TextWrapping="Wrap" TextAlignment="Justify" Text="در صورتی که جدول مقابل خالی بود یا میزان گرد کردن و یا تعداد اقساط  را کاهش دهید.&#x0a; اگر همچنان خالی بود مبلغ وام را افزایش دهید." Height="91" VerticalAlignment="Top" HorizontalAlignment="Left" Width="310"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabGuarantor" Header="    ضامن اول" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <Rectangle Height="30" Margin="151,10,151,0" Stroke="#FF192D6E" VerticalAlignment="Top" Fill="#FF879DE1"/>
+                    <Label x:Name="LblGuaName" Content="نام:" Margin="151,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerFirstName"  Margin="180,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="156"/>
+                    <Label x:Name="LblGuaLastName" Content="نام خانوادگی:" Margin="336,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerLastName" Margin="426,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="157"/>
+                    <Label x:Name="LblGuaNationalCode" Content="کد ملی:" Margin="583,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerNationalCode" Margin="642,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="115"/>
+                    <Label x:Name="LblGuaBlockType" Content="مسدود سازی:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaBlockAmount" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblGuaType" Content="نوع ضمانت:" HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaAmount" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaReceiptNumber" Content="شماره سند:" HorizontalAlignment="Left" Margin="599,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="33,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtGuaBlockAmount" Height="30" Margin="373,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaBlockAmount_TextChanged" CommandManager.PreviewExecuted="DisablePaste" Visibility="Hidden"/>
+                    <TextBox x:Name="TxtGuaAmount" Height="30" Margin="373,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaAmount_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtGuaReceiptNumber" Height="30" Margin="684,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" MaxLength="15" HorizontalAlignment="Left" Width="214"/>
+                    <TextBox x:Name="TxtGuaDescription" Margin="109,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" Height="86" VerticalAlignment="Top" HorizontalAlignment="Left" Width="789"/>
+                    <ComboBox x:Name="CboGuaBlockType" HorizontalAlignment="Left" Margin="109,45,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaBlockType_SelectionChanged">
+                        <ComboBoxItem Content="عدم مسدود سازی" IsSelected="True"/>
+                        <ComboBoxItem Content="تا تسویه وام"/>
+                        <ComboBoxItem Content="تا مبلغ تعیین شده"/>
+
+                    </ComboBox>
+                    <ComboBox x:Name="CboGuaType" HorizontalAlignment="Left" Margin="109,80,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaType_SelectionChanged"/>
+                    <Button x:Name="BtnGuaSelect" Content="انتخاب ضامن" Margin="10,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="1" Height="30" VerticalAlignment="Top" Click="BtnGuaSelect_Click"/>
+                    <Button x:Name="BtnGuaAdd" Content="ثبت جدید" Margin="762,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="2" Height="30" VerticalAlignment="Top" Click="BtnGuaAdd_Click"/>
+                    <Label x:Name="LblRial6" Content="ریال" Margin="558,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblRial7" Content="ریال" Margin="558,80,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabGuarantor2" Header="    ضامن دوم" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <Rectangle Height="30" Margin="151,10,151,0" Stroke="#FF192D6E" VerticalAlignment="Top" Fill="#FF879DE1"/>
+                    <Label x:Name="LblGuaName2" Content="نام:" Margin="151,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerFirstName2"  Margin="180,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="156"/>
+                    <Label x:Name="LblGuaLastName2" Content="نام خانوادگی:" Margin="336,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerLastName2" Margin="426,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="157"/>
+                    <Label x:Name="LblGuaNationalCode2" Content="کد ملی:" Margin="583,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerNationalCode2" Margin="642,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="115"/>
+                    <Label x:Name="LblGuaBlockType2" Content="مسدود سازی:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaBlockAmount2" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblGuaType2" Content="نوع ضمانت:" HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaAmount2" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaReceiptNumber2" Content="شماره سند:" HorizontalAlignment="Left" Margin="599,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaDescription2" Content="توضیحات:" HorizontalAlignment="Left" Margin="33,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtGuaBlockAmount2" Height="30" Margin="373,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaBlockAmount2_TextChanged" CommandManager.PreviewExecuted="DisablePaste" Visibility="Hidden"/>
+                    <TextBox x:Name="TxtGuaAmount2" Height="30" Margin="373,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaAmount2_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtGuaReceiptNumber2" Height="30" Margin="684,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" MaxLength="15" HorizontalAlignment="Left" Width="214"/>
+                    <TextBox x:Name="TxtGuaDescription2" Margin="109,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" HorizontalAlignment="Left" Width="789" Height="86" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CboGuaBlockType2" HorizontalAlignment="Left" Margin="109,45,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaBlockType2_SelectionChanged">
+                        <ComboBoxItem Content="عدم مسدود سازی" IsSelected="True"/>
+                        <ComboBoxItem Content="تا تسویه وام"/>
+                        <ComboBoxItem Content="تا مبلغ تعیین شده (باقی مانده از وام)"/>
+
+                    </ComboBox>
+                    <ComboBox x:Name="CboGuaType2" HorizontalAlignment="Left" Margin="109,80,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaType2_SelectionChanged"/>
+                    <Button x:Name="BtnGuaSelect2" Content="انتخاب ضامن" Margin="10,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="1" Height="30" VerticalAlignment="Top" Click="BtnGuaSelect2_Click"/>
+                    <Button x:Name="BtnGuaAdd2" Content="ثبت جدید" Margin="762,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="2" Height="30" VerticalAlignment="Top" Click="BtnGuaAdd2_Click"/>
+                    <Label x:Name="LblRial8" Content="ریال" Margin="558,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblRial9" Content="ریال" Margin="558,80,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabGuarantor3" Header="    ضامن سوم" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <Rectangle Height="30" Margin="151,10,151,0" Stroke="#FF192D6E" VerticalAlignment="Top" Fill="#FF879DE1"/>
+                    <Label x:Name="LblGuaName3" Content="نام:" Margin="151,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerFirstName3"  Margin="180,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="156"/>
+                    <Label x:Name="LblGuaLastName3" Content="نام خانوادگی:" Margin="336,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerLastName3" Margin="426,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="157"/>
+                    <Label x:Name="LblGuaNationalCode3" Content="کد ملی:" Margin="583,10,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaPerNationalCode3" Margin="642,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="115"/>
+                    <Label x:Name="LblGuaBlockType3" Content="مسدود سازی:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaBlockAmount3" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblGuaType3" Content="نوع ضمانت:" HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaAmount3" Content="مبلغ:" HorizontalAlignment="Left" Margin="327,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaReceiptNumber3" Content="شماره سند:" HorizontalAlignment="Left" Margin="599,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblGuaDescription3" Content="توضیحات:" HorizontalAlignment="Left" Margin="33,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtGuaBlockAmount3" Height="30" Margin="373,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaBlockAmount3_TextChanged" CommandManager.PreviewExecuted="DisablePaste" Visibility="Hidden"/>
+                    <TextBox x:Name="TxtGuaAmount3" Height="30" Margin="373,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" PreviewTextInput="NumberInput" HorizontalAlignment="Left" Width="221" MaxLength="17" TextChanged="TxtGuaAmount3_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtGuaReceiptNumber3" Height="30" Margin="684,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" MaxLength="15" HorizontalAlignment="Left" Width="214"/>
+                    <TextBox x:Name="TxtGuaDescription3" Margin="109,115,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="6" HorizontalAlignment="Left" Width="789" Height="86" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CboGuaBlockType3" HorizontalAlignment="Left" Margin="109,45,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaBlockType3_SelectionChanged">
+                        <ComboBoxItem Content="عدم مسدود سازی" IsSelected="True"/>
+                        <ComboBoxItem Content="تا تسویه وام"/>
+                        <ComboBoxItem Content="تا مبلغ تعیین شده (باقی مانده از وام)"/>
+
+                    </ComboBox>
+                    <ComboBox x:Name="CboGuaType3" HorizontalAlignment="Left" Margin="109,80,0,0" VerticalAlignment="Top" Width="213" Height="30" TabIndex="3" SelectionChanged="CboGuaType3_SelectionChanged"/>
+                    <Button x:Name="BtnGuaSelect3" Content="انتخاب ضامن" Margin="10,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="1" Height="30" VerticalAlignment="Top" Click="BtnGuaSelect3_Click"/>
+                    <Button x:Name="BtnGuaAdd3" Content="ثبت جدید" Margin="762,10,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="136" TabIndex="2" Height="30" VerticalAlignment="Top" Click="BtnGuaAdd3_Click"/>
+                    <Label x:Name="LblRial10" Content="ریال" Margin="558,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Visibility="Hidden"/>
+                    <Label x:Name="LblRial11" Content="ریال" Margin="558,80,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabIntroducer" Header="    معرف" Style="{DynamicResource TabItemStyle1}" Background="Transparent" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+
+                    <GroupBox Name="GrpReal" Header="    حقیقی" Margin="10,5,10,0" Height="70" VerticalAlignment="Top">
+                        <Grid>
+                            <Rectangle Height="30" Margin="135,0,135,-2" Stroke="#FF192D6E" VerticalAlignment="Top" Fill="#FF879DE1"/>
+                            <Label x:Name="LblRecomName" Content="نام:" Margin="135,0,0,-2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                            <Label x:Name="LblRecomPerFirstName"  Margin="164,0,0,-2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="157"/>
+                            <Label x:Name="LblRecomLastName" Content="نام خانوادگی:" Margin="321,0,0,-2" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                            <Label x:Name="LblRecomPerLastName" Margin="411,0,0,-2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="156"/>
+                            <Label x:Name="LblRecomNationalCode" Content="کد ملی:" Margin="567,0,0,-2" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                            <Label x:Name="LblRecomPerNationalCode" Margin="626,0,0,-2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" Width="115"/>
+
+                            <Button x:Name="BtnRecomSelect" Content="انتخاب معرف" Margin="10,0,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="1" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="BtnRecomSelect_Click"/>
+                            <Button x:Name="BtnRecomAdd" Content="ثبت جدید" Margin="746,0,0,-2" Style="{DynamicResource ButtonStyle1}" TabIndex="2" HorizontalAlignment="Left" Width="120" Height="30" VerticalAlignment="Top" Click="BtnRecomAdd_Click"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Name="GrpLegal" Header="    حقوقی" Margin="10,80,10,0" Height="70" VerticalAlignment="Top">
+                        <Grid>
+                            <Label x:Name="LblRecomType" Content="انتخاب:" HorizontalAlignment="Left" Margin="10,0,0,0" Style="{DynamicResource LabelStyle1}" Height="30" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="CboRecom" IsEditable="True"  Margin="70,0,0,0" VerticalAlignment="Top" Height="30" TabIndex="3" HorizontalAlignment="Left" Width="796"/>
+                        </Grid>
+                    </GroupBox>
+
+
+                    <RadioButton Name="RdoReal" IsChecked="True" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+                    <RadioButton Name="RdoLegal" HorizontalAlignment="Left" Margin="20,93,0,0" VerticalAlignment="Top" Checked="RdoLegal_Checked"/>
+                    <Label x:Name="LblRecomDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <TextBox x:Name="TxtRecomDescription" Margin="86,155,10,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" Height="46" VerticalAlignment="Top"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <DataGrid x:Name="DgdLoan" Margin="20,340,0,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="LoandataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False"  KeyboardNavigation.TabNavigation="Once" CanUserSortColumns="False" Height="216" VerticalAlignment="Top" HorizontalAlignment="Left" Width="916" SelectionChanged="DgdLoan_SelectionChanged">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="شماره وام" Width="70" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="تاریخ پرداخت" Width="100" Binding="{Binding LoanDate}"/>
+
+                <DataGridTextColumn Header="نوع وام" Width="120" Binding="{Binding LoanType}"/>
+
+                <DataGridTextColumn Header="مبلغ وام" Width="130" Binding="{Binding LoanAmount,StringFormat={}{0:N0}}"/>
+
+                <DataGridTextColumn Header="نوع کارمزد" Width="110" Binding="{Binding WageType}"/>
+
+                <DataGridTextColumn Header="مبلغ کارمزد" Width="130" Binding="{Binding WageAmount,StringFormat={}{0:N0}}"/>
+
+                <DataGridTextColumn Header="تعداد اقساط" Width="85" Binding="{Binding LoanInstallmentNum}"/>
+
+                <DataGridTextColumn Header="توضیحات" Width="120" Binding="{Binding LoanDescription}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="BtnAdd" Content="ثبت" Margin="293,561,0,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Width="120" TabIndex="8" Click="BtnAdd_Click" IsDefault="True" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNew" Content="جدید" Margin="543,561,293,0" Style="{DynamicResource ButtonStyle1}" TabIndex="9" Click="BtnNew_Click" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnDelete" Content="حذف" Margin="418,561,0,0" Style="{DynamicResource ButtonStyle1}"  TabIndex="9" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="BtnDelete_Click"/>
+
+        <CheckBox Name="ChkGuarantor" HorizontalAlignment="Left" Margin="157,91,0,0" VerticalAlignment="Top" IsChecked="True" FlowDirection="LeftToRight" Checked="ChkGuarantor_Checked" Unchecked="ChkGuarantor_Unchecked"/>
+        <CheckBox Name="ChkGuarantor2" HorizontalAlignment="Left" Margin="248,91,0,0" VerticalAlignment="Top" IsChecked="True" FlowDirection="LeftToRight" Checked="ChkGuarantor2_Checked" Unchecked="ChkGuarantor2_Unchecked"/>
+        <CheckBox Name="ChkGuarantor3" HorizontalAlignment="Left" Margin="341,91,0,0" VerticalAlignment="Top" IsChecked="True" FlowDirection="LeftToRight" Checked="ChkGuarantor3_Checked" Unchecked="ChkGuarantor3_Unchecked"/>
+        <CheckBox Name="ChkIntroducer" HorizontalAlignment="Left" Margin="438,91,0,0" VerticalAlignment="Top" IsChecked="True" FlowDirection="LeftToRight" Unchecked="ChkIntroducer_Unchecked" Checked="ChkIntroducer_Checked"/>
+
+    </Grid>
+</Window>

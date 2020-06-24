@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <RepAllPer Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>RepAllPer</Alias>
+        <ConnectionStringEncrypted />
+        <Name>RepAllPer</Name>
+      </RepAllPer>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <tblLoanFund Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>tblLoanFund</Alias>
+        <Columns isList="true" count="12">
+          <value>Id,System.Byte</value>
+          <value>LoanFundName,System.String</value>
+          <value>LoanFundTell1,System.String</value>
+          <value>LoanFundTell2,System.String</value>
+          <value>LoanFundFax,System.String</value>
+          <value>LoanFundEmail,System.String</value>
+          <value>LoanFundPostalCode,System.String</value>
+          <value>LoanFundAddress,System.String</value>
+          <value>LoanFundInitialBalance,System.String</value>
+          <value>LoanFundPenalty,System.String</value>
+          <value>LoanFundWagePercent,System.String</value>
+          <value>LoanFundLogo,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>tblLoanFund</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from tblLoanFund</SqlCommand>
+      </tblLoanFund>
+      <PerInfo Ref="4" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PerInfo</Alias>
+        <Columns isList="true" count="9">
+          <value>InfoNationalCode,System.String</value>
+          <value>InfoFirstName,System.String</value>
+          <value>InfoLastName,System.String</value>
+          <value>InfoFatherName,System.String</value>
+          <value>InfoMobile,System.String</value>
+          <value>InfoTell,System.String</value>
+          <value>InfoImage,System.String</value>
+          <value>InfoJobName,System.String</value>
+          <value>Id,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PerInfo</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT dbo.tblInfo.InfoNationalCode, dbo.tblInfo.InfoFirstName,
+  dbo.tblInfo.InfoLastName, dbo.tblInfo.InfoFatherName, dbo.tblInfo.InfoMobile,
+  dbo.tblInfo.InfoTell, dbo.tblInfo.InfoImage, dbo.tblInfo.InfoJobName,
+  dbo.tblInfo.Id
+FROM dbo.tblInfo
+WHERE tblInfo.Id = {InfoId}</SqlCommand>
+      </PerInfo>
+      <PerLoansGuaranty Ref="5" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>PerLoansGuaranty</Alias>
+        <Columns isList="true" count="7">
+          <value>Guarantor_Loan_Id,System.Int32</value>
+          <value>LoanAmount,System.Int64</value>
+          <value>InfoFirstName,System.String</value>
+          <value>InfoLastName,System.String</value>
+          <value>InfoNationalCode,System.String</value>
+          <value>LoanDate,System.String</value>
+          <value>LoanInstallmentNum,System.Byte</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>PerLoansGuaranty</Name>
+        <NameInSource>RepAllPer</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT dbo.tblGuarantor.Guarantor_Loan_Id, dbo.tblLoan.LoanAmount,
+  dbo.tblInfo.InfoFirstName, dbo.tblInfo.InfoLastName,
+  dbo.tblInfo.InfoNationalCode, dbo.tblLoan.LoanDate,
+  dbo.tblLoan.LoanInstallmentNum
+FROM dbo.tblGuarantor INNER JOIN
+  dbo.tblLoan ON dbo.tblGuarantor.Guarantor_Loan_Id = dbo.tblLoan.Id INNER JOIN
+  dbo.tblPersonnel ON dbo.tblLoan.Loan_Personnel_Id = dbo.tblPersonnel.Id
+  INNER JOIN
+  dbo.tblInfo ON dbo.tblPersonnel.Personnel_Info_Id = dbo.tblInfo.Id
+WHERE (dbo.tblGuarantor.Guarantor_Info_Id = {InfoId}) AND (dbo.tblLoan.LoanPayOff = 0)</SqlCommand>
+      </PerLoansGuaranty>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="4">
+      <value>,ShamsiDate,ShamsiDate,,System.String,,False,False,False,False</value>
+      <value>,programPath,programPath,,System.String,,False,False,False,False</value>
+      <value>,TimeNow,TimeNow,,System.String,,False,False,False,False</value>
+      <value>,InfoId,InfoId,,System.Int32,,False,False,False,False,,,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>[255:255:255]</Brush>
+      <Components isList="true" count="5">
+        <ReportTitleBand1 Ref="7" type="ReportTitleBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4,138.1,8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text4 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,138,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>صندوق قرض الحسنه {tblLoanFund.LoanFundName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportTitleBand1>
+        <DataspSelectPersonnelInfo Ref="9" type="DataBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,20,138.1,26</ClientRectangle>
+          <Components isList="true" count="13">
+            <DataspSelectPersonnelInfo_InfoNationalCode Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>67,10,18,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoNationalCode</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoNationalCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoNationalCode>
+            <DataspSelectPersonnelInfo_InfoLastName Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>35,4,44,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoLastName</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoLastName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoLastName>
+            <HeaderspSelectPersonnelInfo_InfoLastName Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>79,4,18,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoLastName</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:نام خانوادگی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoLastName>
+            <HeaderspSelectPersonnelInfo_InfoNationalCode Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>85,10,12,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoNationalCode</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:کد ملی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoNationalCode>
+            <Text10 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,10,29,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>38fdb96621c849d29de62b7defce54c3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoFatherName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>126,10,11,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>487ef63b99d14d8aa3361603f7988633</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:نام پدر</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,16,24,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>3fee485cd03749e7b22a0ec48ebf8d6d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoMobile}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text21 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>121,16,16,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>40b6ab9f7c3d4213a9f70ea29bb434ed</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:تلفن همراه</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Image1 Ref="18" type="Image" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4,2,17,22</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <HorAlignment>Center</HorAlignment>
+              <ImageURL>{programPath}{PerInfo.InfoImage}</ImageURL>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Stretch>True</Stretch>
+              <VertAlignment>Center</VertAlignment>
+            </Image1>
+            <DataspSelectPersonnelInfo_InfoFirstName Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>97,4,34,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataspSelectPersonnelInfo_InfoFirstName</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoFirstName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataspSelectPersonnelInfo_InfoFirstName>
+            <HeaderspSelectPersonnelInfo_InfoFirstName Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>131,4,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderspSelectPersonnelInfo_InfoFirstName</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:نام</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderspSelectPersonnelInfo_InfoFirstName>
+            <Text17 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>58,16,24,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>745c7a79ed7443e09ade03ad3e0432cb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>{PerInfo.InfoTell}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>82,16,15,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <Guid>e45545ac57fd4d5d81cdfa835e6fd1cf</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="6" />
+              <Parent isRef="9" />
+              <Text>:تلفن ثابت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>PerInfo</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataspSelectPersonnelInfo</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataspSelectPersonnelInfo>
+        <HeaderBand2 Ref="23" type="HeaderBand" isKey="true">
+          <Border>All;Black;2;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,54,138.1,8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text9 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,138,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <Guid>4170343d2d4c4c94b946f51c370aebf4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="6" />
+              <Parent isRef="23" />
+              <Text>اطلاعات وام های ضمانت شده(در گردش)</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>c13002178503473db840c662dbdbabd3</Guid>
+          <Name>HeaderBand2</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </HeaderBand2>
+        <HeaderPerLoansGuaranty Ref="25" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,70,138.1,8</ClientRectangle>
+          <Components isList="true" count="7">
+            <HeaderPerLoansGuaranty_LoanInstallmentNum Ref="26" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,12,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_LoanInstallmentNum</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>اقساط</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_LoanInstallmentNum>
+            <HeaderPerLoansGuaranty_LoanAmount Ref="27" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,0,26,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_LoanAmount</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>مبلغ(ریال)</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,RightToLeft=True,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_LoanAmount>
+            <HeaderPerLoansGuaranty_LoanDate Ref="28" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>38,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_LoanDate</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>تاریخ پرداخت</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_LoanDate>
+            <HeaderPerLoansGuaranty_Guarantor_Loan_Id Ref="29" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>56,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_Guarantor_Loan_Id</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>شماره وام</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_Guarantor_Loan_Id>
+            <HeaderPerLoansGuaranty_InfoNationalCode Ref="30" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>74,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_InfoNationalCode</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>کدملی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_InfoNationalCode>
+            <HeaderPerLoansGuaranty_InfoLastName Ref="31" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>92,0,24,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_InfoLastName</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>نام خانوادگی</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_InfoLastName>
+            <HeaderPerLoansGuaranty_InfoFirstName Ref="32" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>116,0,22,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderPerLoansGuaranty_InfoFirstName</Name>
+              <Page isRef="6" />
+              <Parent isRef="25" />
+              <Text>نام</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderPerLoansGuaranty_InfoFirstName>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderPerLoansGuaranty</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </HeaderPerLoansGuaranty>
+        <DataPerLoansGuaranty Ref="33" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,86,138.1,8</ClientRectangle>
+          <Components isList="true" count="7">
+            <DataPerLoansGuaranty_LoanInstallmentNum Ref="34" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,12,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_LoanInstallmentNum</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.LoanInstallmentNum}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_LoanInstallmentNum>
+            <DataPerLoansGuaranty_LoanAmount Ref="35" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12,0,26,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_LoanAmount</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.LoanAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_LoanAmount>
+            <DataPerLoansGuaranty_LoanDate Ref="36" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>38,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_LoanDate</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.LoanDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_LoanDate>
+            <DataPerLoansGuaranty_Guarantor_Loan_Id Ref="37" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>56,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_Guarantor_Loan_Id</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.Guarantor_Loan_Id}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_Guarantor_Loan_Id>
+            <DataPerLoansGuaranty_InfoNationalCode Ref="38" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>74,0,18,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_InfoNationalCode</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.InfoNationalCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_InfoNationalCode>
+            <DataPerLoansGuaranty_InfoLastName Ref="39" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>92,0,24,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_InfoLastName</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.InfoLastName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_InfoLastName>
+            <DataPerLoansGuaranty_InfoFirstName Ref="40" type="Text" isKey="true">
+              <Border>All;Black;2;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>116,0,22,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataPerLoansGuaranty_InfoFirstName</Name>
+              <Page isRef="6" />
+              <Parent isRef="33" />
+              <Text>{PerLoansGuaranty.InfoFirstName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataPerLoansGuaranty_InfoFirstName>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>PerLoansGuaranty</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataPerLoansGuaranty</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataPerLoansGuaranty>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>466f84fe94fc42a8b5053fa41e413820</Guid>
+      <Margins>4.95,4.95,4.95,4.95</Margins>
+      <Name>Page1</Name>
+      <PageHeight>210</PageHeight>
+      <PageWidth>148</PageWidth>
+      <PaperSize>A5</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="41" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PreviewSettings>268435455</PreviewSettings>
+  <PrinterSettings Ref="42" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>10/2/2017 12:45:09 PM</ReportChanged>
+  <ReportCreated>2/23/2017 1:25:14 PM</ReportCreated>
+  <ReportFile>E:\project\C#\New folder\Loan\Loan\bin\Debug\Report\ReportForPerson2.mrt</ReportFile>
+  <ReportGuid>d9376f8ebbb04c5da03b33e638d30ce6</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>Report</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2016.3.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+        
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

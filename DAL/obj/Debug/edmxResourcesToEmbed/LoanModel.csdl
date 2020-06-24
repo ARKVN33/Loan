@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBLOANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account_Personnel_Id" Type="Int32" />
+    <Property Name="Account_PaymentType_Id" Type="Byte" />
+    <Property Name="Account_TransactionType_Id" Type="Byte" />
+    <Property Name="AccountAmount" Type="Int64" />
+    <Property Name="AccountReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AccountCurrentBalance" Type="Int64" />
+    <Property Name="AccountPaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AccountDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblAccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblBankAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankAccountBankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountBranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountCardNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountInitialBalance" Type="Int64" />
+    <Property Name="BankAccountDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblBlockType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlockType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblChargeMonthly">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChargeMonthly_Personnel_Id" Type="Int32" />
+    <Property Name="ChargeMonthlyStartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChargeMonthlyEndDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChargeMonthlyCharge" Type="Int64" />
+    <Property Name="ChargeMonthlyDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblChMoPay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChMoPay_ChargeMonthly_Id" Type="Int32" />
+    <Property Name="ChMoPay_Account_Id" Type="Int32" />
+    <Property Name="ChMoPayDueAmount" Type="Int64" />
+    <Property Name="ChMoPayDueDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChMoPayDelayMonth" Type="Int16" />
+  </EntityType>
+  <EntityType Name="tblFeeIncome">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeeIncome_FeeIncomeType_Id" Type="Byte" />
+    <Property Name="FeeIncome_PaymentType_Id" Type="Byte" />
+    <Property Name="FeeIncomeDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FeeIncomeAmount" Type="Int64" />
+    <Property Name="FeeIncomeReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="FeeIncomeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblFeeIncomeType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeeIncomeType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblGuaranteeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuaranteeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblGuarantor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guarantor_Loan_Id" Type="Int32" />
+    <Property Name="Guarantor_Info_Id" Type="Int32" />
+    <Property Name="Guarantor_GuaranteeType_Id" Type="Byte" />
+    <Property Name="Guarantor_BlockType_Id" Type="Byte" />
+    <Property Name="GuarantorReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="GuarantorAmount" Type="Int64" />
+    <Property Name="GuarantorBlockAmount" Type="Int64" />
+    <Property Name="GuarantorBlock" Type="Boolean" />
+    <Property Name="GuarantorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InfoFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoFatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoNationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoGender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="InfoBirthDay" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoBirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoMarried" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="InfoTell" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoMobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="InfoPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobPlaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobTell" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobFax" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblInstallment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Installment_Loan_Id" Type="Int32" />
+    <Property Name="Installment_PaymentType_Id" Type="Byte" />
+    <Property Name="InstallmentDueAmount" Type="Int64" />
+    <Property Name="InstallmentAmount" Type="Int64" />
+    <Property Name="InstallmentReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="InstallmentTotalPaid" Type="Int64" />
+    <Property Name="InstallmentRemaining" Type="Int64" />
+    <Property Name="InstallmentPaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InstallmentDueDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InstallmentDelayDay" Type="Int16" />
+    <Property Name="InstallmentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblInstitution">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Institution" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblIntroducer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Introducer_Loan_Id" Type="Int32" />
+    <Property Name="Introducer_IntroducerType_Id" Type="Byte" />
+    <Property Name="Introducer_Info_Id" Type="Int32" />
+    <Property Name="Introducer_Institution_Id" Type="Int16" />
+    <Property Name="IntroducerDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblIntroducerType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IntroducerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblLicense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="AppLicense" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="AppVersion" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblLoan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Loan_Personnel_Id" Type="Int32" />
+    <Property Name="Loan_LoanType_Id" Type="Byte" />
+    <Property Name="LoanAmount" Type="Int64" />
+    <Property Name="LoanDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LoanInstallmentNum" Type="Byte" />
+    <Property Name="LoanInstallmentFirstPayDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LoanInstallmentInterspace" Type="Byte" />
+    <Property Name="LoanPayOff" Type="Boolean" />
+    <Property Name="LoanDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Loan_Account_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblLoanFund">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoanFundName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundTell1" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundTell2" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundFax" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundInitialBalance" Type="Int64" />
+    <Property Name="LoanFundPenalty" Type="Int64" />
+    <Property Name="LoanFundWagePercent" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="LoanFundLogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblLoanType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoanType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblPaymentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblPerAccType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PerAccType_Personnel_Id" Type="Int32" />
+    <Property Name="PerAccType_AccountType_Id" Type="Int32" />
+    <Property Name="PerAccTypeAccountNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblPersonnel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Personnel_Info_Id" Type="Int32" />
+    <Property Name="PersonnelId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelMembership" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelMembershipDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelBARCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelQRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblPostType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSecurityAccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Counter" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSecurityQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SecurityQuestion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSundry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RegisteredAdminPassword" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblTransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_PostType_Id" Type="Byte" />
+    <Property Name="User_SecurityQuestion_Id" Type="Byte" />
+    <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassword" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="UserMobileNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="UserEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UserAnswer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserRegistrationDate" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="UserImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblWage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Wage_Loan_Id" Type="Int32" />
+    <Property Name="Wage_WageType_Id" Type="Byte" />
+    <Property Name="Wage_WageCalculationType_Id" Type="Byte" />
+    <Property Name="WagePercent" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="WageAmount" Type="Int64" />
+    <Property Name="WageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblWageCalculationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WageCalculationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblWageType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WageType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="viewAccountInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Account_TransactionType_Id" Type="Byte" />
+    <Property Name="AccountAmount" Type="Int64" />
+    <Property Name="AccountReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AccountCurrentBalance" Type="Int64" />
+    <Property Name="AccountPaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AccountDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Account_PaymentType_Id" Type="Byte" />
+    <Property Name="Account_Personnel_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="viewChMoPayInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Account_Personnel_Id" Type="Int32" />
+    <Property Name="Account_PaymentType_Id" Type="Byte" />
+    <Property Name="Account_TransactionType_Id" Type="Byte" />
+    <Property Name="AccountAmount" Type="Int64" />
+    <Property Name="AccountReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AccountCurrentBalance" Type="Int64" />
+    <Property Name="AccountPaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AccountDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="ChMoPay_ChargeMonthly_Id" Type="Int32" />
+    <Property Name="ChMoPayDueAmount" Type="Int64" />
+    <Property Name="ChMoPayDueDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChMoPayDelayMonth" Type="Int16" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="viewFeeIncomeInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="FeeIncome_FeeIncomeType_Id" Type="Byte" />
+    <Property Name="FeeIncome_PaymentType_Id" Type="Byte" />
+    <Property Name="FeeIncomeDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FeeIncomeAmount" Type="Int64" />
+    <Property Name="FeeIncomeReceiptNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="FeeIncomeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FeeIncomeType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="viewInsLoan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Loan_Personnel_Id" Type="Int32" />
+    <Property Name="LoanPayOff" Type="Boolean" />
+    <Property Name="InstallmentDueAmount" Type="Int64" />
+    <Property Name="InstallmentAmount" Type="Int64" />
+    <Property Name="Guarantor_Info_Id" Type="Int32" />
+    <Property Name="Guarantor_BlockType_Id" Type="Byte" />
+    <Property Name="GuarantorBlock" Type="Boolean" />
+    <Property Name="GuarantorBlockAmount" Type="Int64" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="viewLoanInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Loan_Personnel_Id" Type="Int32" />
+    <Property Name="Loan_Account_Id" Type="Int32" />
+    <Property Name="Loan_LoanType_Id" Type="Byte" />
+    <Property Name="LoanAmount" Type="Int64" />
+    <Property Name="LoanDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LoanInstallmentNum" Type="Byte" />
+    <Property Name="LoanInstallmentFirstPayDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LoanInstallmentInterspace" Type="Byte" />
+    <Property Name="LoanPayOff" Type="Boolean" />
+    <Property Name="LoanDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoanType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Wage_WageType_Id" Type="Byte" />
+    <Property Name="Wage_WageCalculationType_Id" Type="Byte" />
+    <Property Name="WagePercent" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="WageAmount" Type="Int64" />
+    <Property Name="WageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WageType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="viewPersonnelInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="PersonnelId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelMembership" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelMembershipDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelBARCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelQRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoNationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoFatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoGender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="InfoBirthDay" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoBirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoMarried" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="InfoTell" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoMobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="InfoPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InfoAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobPlaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobTell" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobFax" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="InfoJobAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InfoDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Personnel_Info_Id" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="dbLoanEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAccount" EntityType="Self.tblAccount" />
+    <EntitySet Name="tblAccountType" EntityType="Self.tblAccountType" />
+    <EntitySet Name="tblBankAccount" EntityType="Self.tblBankAccount" />
+    <EntitySet Name="tblBlockType" EntityType="Self.tblBlockType" />
+    <EntitySet Name="tblChargeMonthly" EntityType="Self.tblChargeMonthly" />
+    <EntitySet Name="tblChMoPay" EntityType="Self.tblChMoPay" />
+    <EntitySet Name="tblFeeIncome" EntityType="Self.tblFeeIncome" />
+    <EntitySet Name="tblFeeIncomeType" EntityType="Self.tblFeeIncomeType" />
+    <EntitySet Name="tblGuaranteeType" EntityType="Self.tblGuaranteeType" />
+    <EntitySet Name="tblGuarantor" EntityType="Self.tblGuarantor" />
+    <EntitySet Name="tblInfo" EntityType="Self.tblInfo" />
+    <EntitySet Name="tblInstallment" EntityType="Self.tblInstallment" />
+    <EntitySet Name="tblInstitution" EntityType="Self.tblInstitution" />
+    <EntitySet Name="tblIntroducer" EntityType="Self.tblIntroducer" />
+    <EntitySet Name="tblIntroducerType" EntityType="Self.tblIntroducerType" />
+    <EntitySet Name="tblLicense" EntityType="Self.tblLicense" />
+    <EntitySet Name="tblLoan" EntityType="Self.tblLoan" />
+    <EntitySet Name="tblLoanFund" EntityType="Self.tblLoanFund" />
+    <EntitySet Name="tblLoanType" EntityType="Self.tblLoanType" />
+    <EntitySet Name="tblPaymentType" EntityType="Self.tblPaymentType" />
+    <EntitySet Name="tblPerAccType" EntityType="Self.tblPerAccType" />
+    <EntitySet Name="tblPersonnel" EntityType="Self.tblPersonnel" />
+    <EntitySet Name="tblPostType" EntityType="Self.tblPostType" />
+    <EntitySet Name="tblSecurityAccess" EntityType="Self.tblSecurityAccess" />
+    <EntitySet Name="tblSecurityQuestion" EntityType="Self.tblSecurityQuestion" />
+    <EntitySet Name="tblSundry" EntityType="Self.tblSundry" />
+    <EntitySet Name="tblTransactionType" EntityType="Self.tblTransactionType" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+    <EntitySet Name="tblWage" EntityType="Self.tblWage" />
+    <EntitySet Name="tblWageCalculationType" EntityType="Self.tblWageCalculationType" />
+    <EntitySet Name="tblWageType" EntityType="Self.tblWageType" />
+    <EntitySet Name="viewAccountInfo" EntityType="Self.viewAccountInfo" />
+    <EntitySet Name="viewChMoPayInfo" EntityType="Self.viewChMoPayInfo" />
+    <EntitySet Name="viewFeeIncomeInfo" EntityType="Self.viewFeeIncomeInfo" />
+    <EntitySet Name="viewInsLoan" EntityType="Self.viewInsLoan" />
+    <EntitySet Name="viewLoanInfo" EntityType="Self.viewLoanInfo" />
+    <EntitySet Name="viewPersonnelInfo" EntityType="Self.viewPersonnelInfo" />
+    <FunctionImport Name="spAllData" ReturnType="Collection(DBLOANModel.spAllData_Result)" />
+    <FunctionImport Name="spAutoAccountId" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="spAutoPersonnelId" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="spPerCanGetMoney" ReturnType="Collection(Int64)">
+      <Parameter Name="PersonnelId" Mode="In" Type="Int32" />
+      <Parameter Name="InfoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spPeriodAllData" ReturnType="Collection(DBLOANModel.spPeriodAllData_Result)">
+      <Parameter Name="StartDate" Mode="In" Type="String" />
+      <Parameter Name="EndDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectAccountInfo" ReturnType="Collection(DBLOANModel.spSelectAccountInfo_Result)">
+      <Parameter Name="PersonnelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectChMoPayInfo" ReturnType="Collection(DBLOANModel.spSelectChMoPayInfo_Result)">
+      <Parameter Name="PersonnelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectFeeIncomeInfo" ReturnType="Collection(DBLOANModel.spSelectFeeIncomeInfo_Result)" />
+    <FunctionImport Name="spSelectLoanInfo" ReturnType="Collection(DBLOANModel.spSelectLoanInfo_Result)">
+      <Parameter Name="PersonnelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectPersonnelInfo" ReturnType="Collection(DBLOANModel.spSelectPersonnelInfo_Result)" />
+    <FunctionImport Name="spSortAccount">
+      <Parameter Name="Account_Personnel_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateAccountCurrentBalance">
+      <Parameter Name="PersonnelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spAllData_Result">
+    <Property Type="Int64" Name="TotalFund" Nullable="true" />
+    <Property Type="Int64" Name="LoanFundIniBal" Nullable="true" />
+    <Property Type="Int64" Name="BankAccIniBal" Nullable="true" />
+    <Property Type="Int64" Name="Pay" Nullable="true" />
+    <Property Type="Int64" Name="AllMembershipFee" Nullable="true" />
+    <Property Type="Int64" Name="AllChMoPay" Nullable="true" />
+    <Property Type="Int64" Name="Receivee" Nullable="true" />
+    <Property Type="Int64" Name="IncomeAmount" Nullable="true" />
+    <Property Type="Int64" Name="FeeAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsTotalAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsTotalDueAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsRemaining" Nullable="true" />
+    <Property Type="Int64" Name="AllLoanPay" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType1" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType2" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType3" Nullable="true" />
+    <Property Type="Int64" Name="AllWage" Nullable="true" />
+    <Property Type="Int32" Name="PerMemNum" Nullable="true" />
+    <Property Type="Int32" Name="PerNotMemNum" Nullable="true" />
+    <Property Type="Int32" Name="AllLoanNum" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType1" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType2" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType3" Nullable="true" />
+    <Property Type="Int32" Name="LoanIsPayOff" Nullable="true" />
+    <Property Type="Int32" Name="LoanNotPayOff" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spPeriodAllData_Result">
+    <Property Type="Int64" Name="TotalFund" Nullable="true" />
+    <Property Type="Int64" Name="Pay" Nullable="true" />
+    <Property Type="Int64" Name="AllMembershipFee" Nullable="true" />
+    <Property Type="Int64" Name="AllChMoPay" Nullable="true" />
+    <Property Type="Int64" Name="Receivee" Nullable="true" />
+    <Property Type="Int64" Name="IncomeAmount" Nullable="true" />
+    <Property Type="Int64" Name="FeeAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsTotalAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsTotalDueAmount" Nullable="true" />
+    <Property Type="Int64" Name="InsRemaining" Nullable="true" />
+    <Property Type="Int64" Name="AllLoanPay" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType1" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType2" Nullable="true" />
+    <Property Type="Int64" Name="LoanPayType3" Nullable="true" />
+    <Property Type="Int32" Name="PerMemNum" Nullable="true" />
+    <Property Type="Int32" Name="PerNotMemNum" Nullable="true" />
+    <Property Type="Int32" Name="AllLoanNum" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType1" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType2" Nullable="true" />
+    <Property Type="Int32" Name="LoanNumType3" Nullable="true" />
+    <Property Type="Int32" Name="LoanIsPayOff" Nullable="true" />
+    <Property Type="Int32" Name="LoanNotPayOff" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spSelectAccountInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Byte" Name="Account_TransactionType_Id" Nullable="true" />
+    <Property Type="Int64" Name="AccountAmount" Nullable="true" />
+    <Property Type="String" Name="AccountReceiptNumber" Nullable="true" MaxLength="15" />
+    <Property Type="Int64" Name="AccountCurrentBalance" Nullable="true" />
+    <Property Type="String" Name="AccountPaymentDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="AccountDescription" Nullable="true" />
+    <Property Type="String" Name="TransactionType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentType" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="Account_PaymentType_Id" Nullable="true" />
+    <Property Type="Int32" Name="Account_Personnel_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spSelectChMoPayInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="Account_Personnel_Id" Nullable="true" />
+    <Property Type="Byte" Name="Account_PaymentType_Id" Nullable="true" />
+    <Property Type="Byte" Name="Account_TransactionType_Id" Nullable="true" />
+    <Property Type="Int64" Name="AccountAmount" Nullable="true" />
+    <Property Type="String" Name="AccountReceiptNumber" Nullable="true" MaxLength="15" />
+    <Property Type="Int64" Name="AccountCurrentBalance" Nullable="true" />
+    <Property Type="String" Name="AccountPaymentDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="AccountDescription" Nullable="true" />
+    <Property Type="Int32" Name="Expr1" Nullable="false" />
+    <Property Type="Int32" Name="ChMoPay_ChargeMonthly_Id" Nullable="true" />
+    <Property Type="Int64" Name="ChMoPayDueAmount" Nullable="true" />
+    <Property Type="String" Name="ChMoPayDueDate" Nullable="true" MaxLength="10" />
+    <Property Type="Int16" Name="ChMoPayDelayMonth" Nullable="true" />
+    <Property Type="String" Name="TransactionType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentType" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spSelectFeeIncomeInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Byte" Name="FeeIncome_FeeIncomeType_Id" Nullable="true" />
+    <Property Type="Byte" Name="FeeIncome_PaymentType_Id" Nullable="true" />
+    <Property Type="String" Name="FeeIncomeDate" Nullable="true" MaxLength="10" />
+    <Property Type="Int64" Name="FeeIncomeAmount" Nullable="true" />
+    <Property Type="String" Name="FeeIncomeReceiptNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="FeeIncomeDescription" Nullable="true" />
+    <Property Type="String" Name="FeeIncomeType" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="spSelectLoanInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="Loan_Personnel_Id" Nullable="true" />
+    <Property Type="Int32" Name="Loan_Account_Id" Nullable="true" />
+    <Property Type="Byte" Name="Loan_LoanType_Id" Nullable="true" />
+    <Property Type="Int64" Name="LoanAmount" Nullable="true" />
+    <Property Type="String" Name="LoanDate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="LoanInstallmentNum" Nullable="true" />
+    <Property Type="String" Name="LoanInstallmentFirstPayDate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="LoanInstallmentInterspace" Nullable="true" />
+    <Property Type="Boolean" Name="LoanPayOff" Nullable="true" />
+    <Property Type="String" Name="LoanDescription" Nullable="true" />
+    <Property Type="String" Name="LoanType" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="Wage_WageType_Id" Nullable="true" />
+    <Property Type="Byte" Name="Wage_WageCalculationType_Id" Nullable="true" />
+    <Property Type="String" Name="WagePercent" Nullable="true" MaxLength="4" />
+    <Property Type="Int64" Name="WageAmount" Nullable="true" />
+    <Property Type="String" Name="WageDescription" Nullable="true" />
+    <Property Type="String" Name="WageType" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spSelectPersonnelInfo_Result">
+    <Property Type="String" Name="PersonnelId" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PersonnelMembership" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="PersonnelMembershipDate" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PersonnelBARCode" Nullable="true" />
+    <Property Type="String" Name="PersonnelQRCode" Nullable="true" />
+    <Property Type="String" Name="InfoNationalCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="InfoFirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoLastName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoFatherName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="InfoGender" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="InfoBirthDay" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="InfoBirthPlace" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoMarried" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="InfoTell" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="InfoMobile" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="InfoEmail" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="InfoPostalCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="InfoAddress" Nullable="true" />
+    <Property Type="String" Name="InfoJobName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoJobPlaceName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InfoJobTell" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="InfoJobFax" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="InfoJobAddress" Nullable="true" />
+    <Property Type="String" Name="InfoImage" Nullable="true" />
+    <Property Type="String" Name="InfoDescription" Nullable="true" />
+    <Property Type="String" Name="PersonnelSignature" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="Personnel_Info_Id" Nullable="true" />
+  </ComplexType>
+</Schema>

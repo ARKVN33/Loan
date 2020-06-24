@@ -1,0 +1,153 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
+    x:Class="Loan.Windows.MainWindow"
+    mc:Ignorable="d"
+    Title="MainWindow" Height="650" Width="1040" WindowStartupLocation="CenterScreen" FontSize="20" FontFamily="B Nazanin" Closing="Window_Closing">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid>
+        <custom:Ribbon VerticalAlignment="Top" FlowDirection="RightToLeft">
+            <custom:Ribbon.ApplicationMenu>
+                <custom:RibbonApplicationMenu>
+                    <custom:RibbonApplicationMenuItem Header="اطلاعات کاربری" x:Name="PerInfo" ImageSource="../Icon/UserInfo.png" Tag="1000"/>
+                    <custom:RibbonApplicationMenuItem Header="تنظیمات" x:Name="Setting" ImageSource="../Icon/Setting.png"/>
+                    <custom:RibbonApplicationMenuItem Header="پشتیبان گیری از اطلاعات" x:Name="BackUp" ImageSource="../Icon/Backup.png" Click="BackUp_Click"/>
+                    <custom:RibbonApplicationMenuItem Header="مشاهده پشتیبان های خودکار" x:Name="AutoBackUp" ImageSource="../Icon/Backup.png" Click="AutoBackUp_Click" />
+                    <custom:RibbonApplicationMenuItem Header="بازنشانی فایل پشتیبان" x:Name="Restore" ImageSource="../Icon/Restore.png" Click="Restore_Click"/>
+                    <custom:RibbonApplicationMenuItem Header="بروزرسانی نرم افزار" x:Name="Update" ImageSource="../Icon/Update.png"/>
+                    <custom:RibbonApplicationMenuItem Header="تغییر کلمه عبور" x:Name="ChangePassword" ImageSource="../Icon/ChangePassword.png" Click="ChangePassword_Click" />
+                    <custom:RibbonApplicationMenuItem Header="راهنما" x:Name="Help" ImageSource="../Icon/Help.png"/>
+                    <custom:RibbonApplicationMenuItem Header="درباره ی ما" x:Name="AboutUs" ImageSource="../Icon/AboutUs.png"/>
+                    <custom:RibbonApplicationMenuItem Header="خروج" x:Name="Exit" ImageSource="../Icon/Exit.png" Click="Close"/>
+                </custom:RibbonApplicationMenu>
+            </custom:Ribbon.ApplicationMenu>
+            <custom:RibbonTab Header="صندوق">
+                <custom:RibbonGroup Header="اطلاعات پایه">
+                    <custom:RibbonButton x:Name="BtnLoanFund" Label="تعریف صندوق" LargeImageSource="../Icon/LoanFund.png" Height="Auto" Width="65" Click="BtnLoanFund_Click"/>
+                    <custom:RibbonButton x:Name="BtnBankAccount" Label="حساب های بانکی" LargeImageSource="../Icon/BankAccount.png" Height="Auto" Width="65" Click="BtnBankAccount_Click"/>
+
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="درآمد/هزینه">
+                    <custom:RibbonButton x:Name="BtnFeeIncome" Label="ثبت" LargeImageSource="../Icon/FeeIncome.png" Click="BtnFeeIncome_Click" Height="Auto" Width="65"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="موجودی ها">
+                    <custom:RibbonButton x:Name="BtnLoanFundInfo" Label="نمایش" LargeImageSource="../Icon/Summary.png" Click="BtnLoanFundInfo_Click" Height="Auto" Width="65"/>
+                </custom:RibbonGroup>
+            </custom:RibbonTab>
+            <custom:RibbonTab Header="امور اشخاص">
+
+                <custom:RibbonGroup Header="اشخاص">
+                    <custom:RibbonButton Label="ثبت" LargeImageSource="../Icon/Personnel.png" Click="BtnAddPersonnel_Click" Width="65"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="حساب پس انداز">
+                    <custom:RibbonButton Label="پرداخت/برداشت" LargeImageSource="../Icon/PayMoney.png" Click="BtnPay_Click" Width="65"/>
+                    <!--custom:RibbonButton Label="برداشت" LargeImageSource="../Icon/ReceiveMoney.png" Click="BtnReceive_Click" Width="65"/-->
+                    <!--custom:RibbonButton Label="ویرایش" SmallImageSource="../Icon/Edit.png"/>
+                    <custom:RibbonButton Label="حذف" SmallImageSource="../Icon/Delete.png" Click="BtnDeleteAccount_Click"/-->
+                </custom:RibbonGroup>
+            </custom:RibbonTab>
+            <custom:RibbonTab Header="امور اعضا">
+                <custom:RibbonGroup Header="شارژ ماهانه">
+                    <custom:RibbonButton Label="ثبت" LargeImageSource="../Icon/ChargeMonthly.png" Click="BtnAddChargeMonthly_Click" Width="65"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="پرداخت شارژ ماهانه">
+                    <custom:RibbonButton Label="ثبت" LargeImageSource="../Icon/ChargeMonthly.png" Click="BtnPayChargeMonthly_Click" Width="65"/>
+                    <!--custom:RibbonButton Label="ویرایش" SmallImageSource="../Icon/Edit.png" Click="BtnEditChargeMonthly_Click"/>
+                    <custom:RibbonButton Label="حذف" SmallImageSource="../Icon/Delete.png" Click="BtnDeleteChargeMonthly_Click"/-->
+                </custom:RibbonGroup>
+            </custom:RibbonTab>
+            <custom:RibbonTab Header="امور وام">
+                <custom:RibbonGroup Header="وام">
+                    <custom:RibbonButton Label="ثبت" LargeImageSource="../Icon/Loan.png" Click="BtnAddLoan_Click" Width="65"/>
+                    <!--custom:RibbonButton Label="ویرایش" SmallImageSource="../Icon/Edit.png"  Click="BtnEditLoan_Click"/>
+                    <custom:RibbonButton Label="حذف" SmallImageSource="../Icon/Delete.png"  Click="BtnDeleteLoan_Click"/-->
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="اقساط">
+                    <custom:RibbonButton Label="ثبت" LargeImageSource="../Icon/Installment.png"  Click="BtnAddInstallment_Click" Width="65"/>
+                    <!--custom:RibbonButton Label="ویرایش" SmallImageSource="../Icon/Edit.png"/>
+                    <custom:RibbonButton Label="حذف" SmallImageSource="../Icon/Delete.png"/-->
+                </custom:RibbonGroup>
+            </custom:RibbonTab>
+            <custom:RibbonTab Header="گزارشات">
+                <custom:RibbonGroup Header="اشخاص">
+                    <custom:RibbonMenuButton Label="لیست اشخاص" LargeImageSource="../Icon/Loan.png" Width="85">
+                        <custom:RibbonButton Name="BtnPerRep" Label="بدون جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnPerRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnPerSomeRep" Label="با جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnPerSomeRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnPerFullRep" Label="تفصیلی" SmallImageSource="../Icon/Loan.png" Click="BtnPerFullRep_Click" Width="150"/>
+                    </custom:RibbonMenuButton>
+
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="اعضا">
+                    <custom:RibbonMenuButton Label="لیست اعضا" LargeImageSource="../Icon/Loan.png" Width="85">
+                        <custom:RibbonButton Name="BtnMemPerRep" Label="بدون جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnMemPerRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnMemPerSomeRep" Label="با جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnMemPerSomeRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnMemPerFullRep" Label="تفصیلی" SmallImageSource="../Icon/Loan.png" Click="BtnMemPerFullRep_Click" Width="150"/>
+                    </custom:RibbonMenuButton>
+                    <custom:RibbonButton />
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="غیراعضا">
+                    <custom:RibbonMenuButton Label="لیست غیراعضا" LargeImageSource="../Icon/Loan.png" Width="85">
+                        <custom:RibbonButton Name="BtnNoMemPerRep" Label="بدون جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnNoMemPerRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnNoMemPerSomeRep" Label="با جزییات" SmallImageSource="../Icon/Loan.png" Click="BtnNoMemPerSomeRep_Click" Width="150"/>
+                        <custom:RibbonButton Name="BtnNoMemPerFullRep" Label="تفصیلی" SmallImageSource="../Icon/Loan.png" Click="BtnNoMemPerFullRep_Click" Width="150"/>
+                    </custom:RibbonMenuButton>
+
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="وام">
+                    <custom:RibbonMenuButton Label="'گزارشات وام ها" LargeImageSource="../Icon/Installment.png" Width="85" HorizontalAlignment="Right" >
+                        <custom:RibbonMenuButton Label="لیست کلیه وام ها" SmallImageSource="../Icon/Installment.png" Width="150">
+                            <custom:RibbonButton Name="BtnAllLoan" Label="بدون جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnAllLoan_Click"/>
+                            <custom:RibbonButton Name="BtnAllLoanSomeRep" Label="با جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnAllLoanSomeRep_Click"/>
+                        </custom:RibbonMenuButton>
+
+                        <custom:RibbonMenuButton Label="وامهای تسویه شده" SmallImageSource="../Icon/Installment.png" Width="150">
+                            <custom:RibbonButton Name="BtnPayOffLoan" Label="بدون جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnPayOffLoan_Click"/>
+                            <custom:RibbonButton Name="BtnPayOffLoanSomeRep" Label="با جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnPayOffLoanSomeRep_Click"/>
+                        </custom:RibbonMenuButton>
+                        <custom:RibbonMenuButton Label="وامهای در گردش" SmallImageSource="../Icon/Installment.png" Width="150">
+                            <custom:RibbonButton Name="BtnNoPayOffLoan" Label="بدون جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnNoPayOffLoan_Click"/>
+                            <custom:RibbonButton Name="BtnNoPayOffLoanSomeRep" Label="با جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnNoPayOffLoanSomeRep_Click"/>
+                        </custom:RibbonMenuButton>
+                        <custom:RibbonMenuButton Label="وامهای با اقساط معوقه" SmallImageSource="../Icon/Installment.png" Width="150">
+                            <custom:RibbonButton Name="BtnDelayedLoan" Label="بدون جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnDelayedLoan_Click"/>
+                            <custom:RibbonButton Name="BtnDelayedLoanSomeRep" Label="با جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnDelayedLoanSomeRep_Click"/>
+                        </custom:RibbonMenuButton>
+                        <custom:RibbonMenuButton Label="وام های با اقساط تاخیری" SmallImageSource="../Icon/Installment.png" Width="150">
+                            <custom:RibbonButton Name="BtnDelayLoan" Label="بدون جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnDelayLoan_Click"/>
+                            <custom:RibbonButton Name="BtnDelayLoanSomeRep" Label="با جزییات" SmallImageSource="../Icon/Installment.png" Width="150" Click="BtnDelayLoanSomeRep_Click"/>
+                        </custom:RibbonMenuButton>
+                    </custom:RibbonMenuButton>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="حساب">
+                    <custom:RibbonButton Name="BtnPerAcc" Label="دفترچه حساب" LargeImageSource="../Icon/Installment.png" Width="65" Click="BtnPerAcc_Click"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="اقساط">
+                    <custom:RibbonButton Name="BtnPerIns" Label="دفترچه اقساط" LargeImageSource="../Icon/Installment.png" Width="65" Click="RibbonButton_Click_2"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="درآمد و هزینه">
+                    <custom:RibbonButton Name="BtnLoanFeeInc" Label="درآمدها و هزینه ها" LargeImageSource="../Icon/Installment.png" Width="65" Click="BtnLoanFeeInc_Click"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="گزارش فردی">
+                    <custom:RibbonButton Name="BtnPerLoanRep" Label="گزارش فردی" LargeImageSource="../Icon/Installment.png" Width="65" Click="BtnPerLoanRep_Click"/>
+                </custom:RibbonGroup>
+                <custom:RibbonGroup Header="گزارش ضمانت">
+                    <custom:RibbonButton Name="BtnInfoRep" Label="گزارش فردی" LargeImageSource="../Icon/Installment.png" Width="65" Click="BtnInfoRep_Click"/>
+                </custom:RibbonGroup>
+            </custom:RibbonTab>
+
+        </custom:Ribbon>
+    </Grid>
+</Window>

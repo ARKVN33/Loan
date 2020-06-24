@@ -1,0 +1,165 @@
+﻿<Window x:Class="Loan.Windows.WinInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" 
+        mc:Ignorable="d"
+        Height="620" Width="861" WindowStartupLocation="CenterScreen" WindowStyle="None" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Loaded="Window_Loaded" >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="ثبت نام اشخاص" FontSize="22" FontWeight="Bold" Margin="0" VerticalAlignment="Top" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10" d:IsLocked="True"/>
+
+        <TabControl x:Name="TabControl" Height="290" Margin="20,45,0,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="#FF192D6E" BorderThickness="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="817">
+            <TabControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.215"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="1.496"/>
+                </TransformGroup>
+            </TabControl.RenderTransform>
+            <TabItem Header="اطلاعات شخصی" Background="Transparent" Style="{DynamicResource TabItemStyle1}" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <GroupBox x:Name="GroupBox" Header="تصویر" Margin="634,0,0,0" FlowDirection="RightToLeft" BorderBrush="#FF192D6E" Height="235" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165"/>
+
+                    <Label Content="نام:" HorizontalAlignment="Left" Margin="92,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="نام خانوادگی:" HorizontalAlignment="Left" Margin="31,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="نام پدر:" HorizontalAlignment="Left" Margin="67,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="کد ملی:" HorizontalAlignment="Left" Margin="62,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="شماره شناسنامه:" Margin="10,150,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="جنسیت:" HorizontalAlignment="Left" Margin="362,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="تاریخ تولد:" HorizontalAlignment="Left" Margin="351,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="محل تولد:" HorizontalAlignment="Left" Margin="352,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="وضعیت تأهل:" Margin="331,150,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="توضیحات:" HorizontalAlignment="Left" Margin="50,185,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtFirstName" HorizontalAlignment="Left" Height="30" Margin="126,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="50"/>
+                    <TextBox x:Name="TxtLastName" HorizontalAlignment="Left" Height="30" Margin="126,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="2" MaxLength="50"/>
+                    <TextBox x:Name="TxtFatherName" HorizontalAlignment="Left" Height="30" Margin="126,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="50"/>
+                    <TextBox x:Name="TxtNationalCode" HorizontalAlignment="Left" Height="30" Margin="126,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="10" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtCode" HorizontalAlignment="Left" Height="30" Margin="126,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" MaxLength="10" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtBirthPlace" HorizontalAlignment="Left" Height="30" Margin="429,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Style="{DynamicResource TextBoxStyle1}" TabIndex="8" MaxLength="50"/>
+                    <TextBox x:Name="TxtDescription" Margin="126,185,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="10" HorizontalAlignment="Left" Width="503" Height="50" VerticalAlignment="Top"/>
+
+                    <persianDateControls:PersianDatePicker x:Name="TxtBirthDay" HorizontalAlignment="Left" Margin="429,80,0,0" VerticalAlignment="Top" Height="30" Width="200" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="7" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate"/>
+                    <ComboBox x:Name="CboGender" HorizontalAlignment="Left" Margin="429,45,0,0" VerticalAlignment="Top" Width="200" Height="30" TabIndex="6">
+                        <ComboBoxItem Content="مذکر" IsSelected="True"/>
+                        <ComboBoxItem Content="مونث"/>
+                    </ComboBox>
+                    <ComboBox x:Name="CboMarried" HorizontalAlignment="Left" Margin="429,150,0,0" Width="200" TabIndex="9" Height="30" VerticalAlignment="Top">
+                        <ComboBoxItem Content="مجرد" IsSelected="True"/>
+                        <ComboBoxItem Content="متأهل"/>
+                    </ComboBox>
+
+                    <Image x:Name="ImgPersonnelImage" Margin="649,30,25,57" Source="../Icon/Personnel.png" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="BtnChoosePicture" Content="انتخاب تصویر" Margin="649,194,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="11" Click="BtnChoosePicture_Click" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="اطلاعات تماس" Background="Transparent" Style="{DynamicResource TabItemStyle1}" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <Label Content="تلفن ثابت:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="تلفن همراه:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="ایمیل:" HorizontalAlignment="Left" Margin="42,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="کد پستی:" HorizontalAlignment="Left" Margin="20,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="آدرس:" HorizontalAlignment="Left" Margin="40,150,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtTell" HorizontalAlignment="Left" Height="30" Margin="95,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="11" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtMobile" Height="30" Margin="95,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="2" MaxLength="11" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" HorizontalAlignment="Left" Width="300" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtEmail" Height="30" Margin="95,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="200" FlowDirection="LeftToRight" PreviewKeyDown="EnglishInput" HorizontalAlignment="Left" Width="300" GotFocus="TxtEmail_GotFocus" LostFocus="TxtEmail_LostFocus"/>
+                    <TextBox x:Name="TxtPostalCode" Height="30" Margin="95,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="10" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" HorizontalAlignment="Left" Width="300" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtAddress" Height="81" Margin="95,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" HorizontalAlignment="Left" Width="704"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="اطلاعات شغلی" Background="Transparent" Style="{DynamicResource TabItemStyle1}" BorderBrush="#FF192D6E">
+                <Grid Background="Transparent">
+                    <Label Content="شغل:" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="نام محل اشتغال:" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="تلفن محل کار:" HorizontalAlignment="Left" Margin="21,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="فکس محل کار:" HorizontalAlignment="Left" Margin="17,115,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label Content="آدرس سازمان:" HorizontalAlignment="Left" Margin="22,150,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtJobName" HorizontalAlignment="Left" Height="30" Margin="125,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="50"/>
+                    <TextBox x:Name="TxtJobPlaceName" Height="30" Margin="125,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="2" MaxLength="50" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="TxtJobTell" HorizontalAlignment="Left" Height="30" Margin="125,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Style="{DynamicResource TextBoxStyle1}" TabIndex="3" MaxLength="11" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtJobFax" Height="30" Margin="125,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="11" PreviewTextInput="NumberInput" FlowDirection="LeftToRight" HorizontalAlignment="Left" Width="300" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtJobAddress" Margin="125,150,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" Height="81" VerticalAlignment="Top" HorizontalAlignment="Left" Width="674"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <DataGrid x:Name="DgdPersonnel" Margin="20,345,20,0" FlowDirection="RightToLeft" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="dataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False" SelectionChanged="DgdPersonnel_SelectionChanged" ScrollViewer.CanContentScroll="True" Height="216" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="نام" Width="120" Binding="{Binding InfoFirstName}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkSlateGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام خانوادگی" Width="120" Binding="{Binding InfoLastName}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DimGray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام پدر" Width="120" Binding="{Binding InfoFatherName}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="کد ملی" Width="110" Binding="{Binding InfoNationalCode}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="شماره موبایل" Width="110" Binding="{Binding InfoMobile}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="توضیحات" Width="180" Binding="{Binding InfoDescription}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="جست و جو:" HorizontalAlignment="Left" Margin="20,566,0,0" Height="30" VerticalAlignment="Top" Style="{DynamicResource LabelStyle1}"/>
+
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="30" Margin="109,566,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="192" Style="{DynamicResource TextBoxStyle1}" TabIndex="0" MaxLength="200" TextChanged="TxtSearch_TextChanged"/>
+
+        <Button x:Name="BtnAdd" Content="ثبت" Margin="306,566,0,0" Style="{DynamicResource ButtonStyle1}" Click="BtnAdd_Click" HorizontalAlignment="Left" Width="120" IsDefault="True" TabIndex="12" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNew" Content="جدید" Margin="431,566,306,0" Style="{DynamicResource ButtonStyle1}" Click="BtnNew_Click" Height="30" VerticalAlignment="Top" TabIndex="13"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,166 @@
+﻿<Window x:Class="Loan.Windows.WinAccountOperation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" 
+        mc:Ignorable="d"
+        Height="652" Width="955" WindowStartupLocation="CenterScreen" FontSize="20" ResizeMode="NoResize" FontFamily="B Nazanin" BorderBrush="#FF192D6E" BorderThickness="2" Loaded="Window_Loaded" WindowStyle="None" >
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:.5" FillBehavior="HoldEnd"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid FlowDirection="RightToLeft" Background="#FFEEEEF2">
+
+
+        <Rectangle Stroke="#FF192D6E" StrokeThickness="0" MouseDown="DragMove" Fill="#FFEEEEF2" Height="30" VerticalAlignment="Top" d:IsLocked="True"/>
+        <Label x:Name="LblTitle" Content="حساب پس انداز" FontSize="22" FontWeight="Bold" Margin="0" VerticalAlignment="Top" MouseDown="DragMove" Style="{DynamicResource LabelStyle1}" Height="30" HorizontalContentAlignment="Center" d:IsLocked="True"/>
+        <Button x:Name="BtnClose" Content="×" Width="35" Height="30" FontSize="22" FontFamily="Arial" Click="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle2}" d:IsLocked="True"/>
+        <Button x:Name="BtnMinimize" Content="-" Margin="35,0,0,0" Width="35" Height="30" FontSize="27" FontFamily="Arial" Click="Minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle3}" d:IsLocked="True"/>
+        <Border BorderBrush="#FF192D6E" BorderThickness="2" Margin="10,35,10,10" CornerRadius="10" d:IsLocked="True"/>
+
+        <Rectangle Height="30" Margin="20,45,0,0" Stroke="#FF192D6E" VerticalAlignment="Top" RadiusY="7" RadiusX="7" HorizontalAlignment="Left" Width="911"/>
+
+        <GroupBox x:Name="GroupBox" Header="خلاصه اطلاعات حساب پس انداز" FontWeight="Bold" Margin="20,80,0,0" FlowDirection="RightToLeft" Height="111" VerticalAlignment="Top" BorderBrush="#FF192D6E" HorizontalAlignment="Left" Width="911"/>
+
+        <Label x:Name="LblId" Content="شماره عضویت:" Margin="20,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerId" Margin="120,45,0,0" Height="30" VerticalAlignment="Top" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Left" Width="115" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblFirstName" Content="نام:" Margin="235,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="29" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerFirstName" Margin="264,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Width="207" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblLastName" Content="نام خانوادگی:" Margin="471,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerLastName" Margin="561,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkBlue" FontWeight="Bold" Width="196" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblNationalCode" Content="کد ملی:" Margin="757,45,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerNationalCode" Margin="816,45,0,0" Height="30" VerticalAlignment="Top" Foreground="DarkBlue" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" HorizontalAlignment="Left" Width="115"/>
+        <Label x:Name="LblCurrentBalance" Content="موجودی حساب:" Margin="33,115,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerCurrentBalance" Margin="143,115,0,0" Height="30" VerticalAlignment="Top" Foreground="DarkBlue" FontWeight="Bold" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Width="155"/>
+        <Label x:Name="LblAllPay" Content="جمع پرداخت ها:" Margin="30,150,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerAllPay" Margin="143,150,0,0" Height="30" VerticalAlignment="Top" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Left" Width="155" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblAllReceive" Content="جمع برداشت ها:" Margin="298,150,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerAllReceive" Margin="409,150,0,0" Height="30" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" HorizontalAlignment="Left" Width="155" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblAllPayNum" Content="تعداد پرداخت ها:" Margin="564,150,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Height="30"/>
+        <Label x:Name="LblPerAllPayNum" Margin="678,150,0,0" Height="30" VerticalAlignment="Top" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Left" Width="65" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblAllReceiveNum" Content="تعداد برداشت ها:" Margin="743,150,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+        <Label x:Name="LblPerAllReceiveNum" Margin="856,150,0,0" Height="30" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" Style="{DynamicResource LabelStyle1}" HorizontalAlignment="Left" Width="65"/>
+
+        <TabControl x:Name="TabControl" Height="177" Margin="20,196,0,0" VerticalAlignment="Top" Background="Transparent" BorderBrush="#FF192D6E" BorderThickness="2" HorizontalAlignment="Left" Width="911">
+            <TabItem Name="TabItemPay"  Header="واریز" Background="Transparent" BorderBrush="#FF192D6E" Style="{DynamicResource TabItemStyle1}" MouseLeftButtonUp="TabItemPay_MouseLeftButtonUp">
+                <Grid Background="Transparent">
+                    <Label x:Name="LblPay" Content="مبلغ واریزی:" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblPayDate" Content="تاریخ پرداخت:" HorizontalAlignment="Left" Margin="9,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblPayType" Content="نوع پرداخت:" HorizontalAlignment="Left" Margin="323,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblPayReceiptNum" Content="شماره سند:" HorizontalAlignment="Left" Margin="618,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblPayDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="34,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtPay" Margin="110,10,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="17" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="204" PreviewTextInput="NumberInput" TextChanged="TxtPay_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtPayReceiptNum" Margin="703,45,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="15" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"/>
+                    <TextBox x:Name="TxtPayDescription" Margin="110,80,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" HorizontalAlignment="Left" Width="783" Height="46" VerticalAlignment="Top"/>
+
+                    <persianDateControls:PersianDatePicker x:Name="TxtPayDate" HorizontalAlignment="Left" Margin="110,45,0,0" VerticalAlignment="Top" Height="30" Width="204" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="2" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate" ContextMenu="{x:Null}" />
+
+                    <ComboBox x:Name="CboPayType" HorizontalAlignment="Left" Margin="413,45,0,0" VerticalAlignment="Top" Width="200" Height="30" TabIndex="3">
+                        <ComboBoxItem Content="" IsSelected="True"/>
+                        <ComboBoxItem Content="نقدی"/>
+                        <ComboBoxItem Content="چک"/>
+                        <ComboBoxItem Content="فیش بانکی"/>
+                        <ComboBoxItem Content="کارت خوان"/>
+                    </ComboBox>
+                    <Label x:Name="LblRial3" Content="ریال" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabItemReceive" Header="برداشت" Background="Transparent" BorderBrush="#FF192D6E" Style="{DynamicResource TabItemStyle1}" MouseLeftButtonUp="TabItemReceive_MouseLeftButtonUp">
+                <Grid Background="Transparent">
+
+                    <Label x:Name="LblReceive" Content="مبلغ برداشتی:" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblCanReceive" Content="قابل برداشت:" Margin="319,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblReceiveDate" Content="تاریخ برداشت:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblReceiveType" Content="نوع برداشت:" HorizontalAlignment="Left" Margin="324,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblReceiveReceiptNum" Content="شماره سند:" HorizontalAlignment="Left" Margin="618,45,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblReceiveDescription" Content="توضیحات:" HorizontalAlignment="Left" Margin="34,80,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                    <TextBox x:Name="TxtReceive" Margin="110,10,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="1" MaxLength="17" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="204" PreviewTextInput="NumberInput" TextChanged="TxtReceive_TextChanged" CommandManager.PreviewExecuted="DisablePaste"/>
+                    <TextBox x:Name="TxtCanReceive" Margin="413,10,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" MaxLength="17" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" PreviewTextInput="NumberInput" IsEnabled="False"/>
+                    <TextBox x:Name="TxtReceiveReceiptNum" Margin="703,45,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="4" MaxLength="15" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"/>
+                    <TextBox x:Name="TxtReceiveDescription" Margin="110,80,0,0" TextWrapping="Wrap" Style="{DynamicResource TextBoxStyle1}" TabIndex="5" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="783"/>
+
+                    <persianDateControls:PersianDatePicker x:Name="TxtReceiveDate" HorizontalAlignment="Left" Margin="110,45,0,0" VerticalAlignment="Top" Height="30" Width="204" Style="{DynamicResource PersianDatePickerStyle1}" TabIndex="2" PreviewTextInput="DateInput" CommandManager.PreviewExecuted="DisablePasteDate"/>
+
+                    <ComboBox x:Name="CboReceiveType" HorizontalAlignment="Left" Margin="413,45,0,0" VerticalAlignment="Top" Width="200" Height="30" TabIndex="3">
+                        <ComboBoxItem Content="" IsSelected="True"/>
+                        <ComboBoxItem Content="نقدی"/>
+                        <ComboBoxItem Content="چک"/>
+                        <ComboBoxItem Content="فیش بانکی"/>
+                    </ComboBox>
+
+                    <Label x:Name="LblRial5" Content="ریال" HorizontalAlignment="Left" Margin="577,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+                    <Label x:Name="LblRial4" Content="ریال" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top" Height="30" Style="{DynamicResource LabelStyle1}"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <DataGrid x:Name="DgdAccount" Margin="20,378,0,0" Style="{DynamicResource DataGridStyle1}" Background="{x:Null}" BorderBrush="#FF192D6E" BorderThickness="2" AreRowDetailsFrozen="True" IsReadOnly="True" LoadingRow="dataGrid_LoadingRow" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF192D6E" AlternatingRowBackground="#FFF1F4F7" AlternationCount="2" SelectionMode="Single" AutoGenerateColumns="False" Height="215" VerticalAlignment="Top" KeyboardNavigation.TabNavigation="Once" CanUserSortColumns="False" HorizontalAlignment="Left" Width="911" SelectionChanged="DgdAccount_SelectionChanged">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="تاریخ پرداخت" Width="110" Binding="{Binding AccountPaymentDate}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="شرح" Width="130" Binding="{Binding TransactionType}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="مبلغ" Width="140" Binding="{Binding AccountAmount,StringFormat={}{0:N0}}"  >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="مانده" Width="140" Binding="{Binding AccountCurrentBalance,StringFormat={}{0:N0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="شماره سند" Width="150" Binding="{Binding AccountReceiptNumber}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="توضیحات" Width="190" Binding="{Binding AccountDescription}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="BtnAdd" Content="ثبت" Margin="166,598,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="6" Click="BtnAdd_Click" HorizontalAlignment="Left" Width="120" IsDefault="True" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNew" Content="جدید" Margin="541,598,0,0" Style="{DynamicResource ButtonStyle1}" TabIndex="7" Click="BtnNew_Click" HorizontalAlignment="Left" Width="120" Height="30" VerticalAlignment="Top"/>
+        <Button x:Name="BtnEdit" Content="ویرایش" Margin="291,598,0,0" Style="{DynamicResource ButtonStyle1}" Height="30" VerticalAlignment="Top" TabIndex="6" HorizontalAlignment="Left" Width="120" Click="BtnEdit_Click"/>
+        <Button x:Name="BtnDelete" Content="حذف" Margin="416,598,0,0" Style="{DynamicResource ButtonStyle1}" Height="30" VerticalAlignment="Top" TabIndex="6" HorizontalAlignment="Left" Width="120" Click="BtnDelete_Click"/>
+        <Button x:Name="BtnAccRep" Content="دفترچه حساب" Margin="666,598,165,0" Style="{DynamicResource ButtonStyle1}" TabIndex="2" Height="30" VerticalAlignment="Top" Click="BtnAccRep_Click"/>
+    </Grid>
+</Window>

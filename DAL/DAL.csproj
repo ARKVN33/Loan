@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07C8BC08-B640-46A0-949E-89CB4D39D521}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net">
+      <HintPath>..\Loan\bin\Debug\BCrypt.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PersianDateTime, Version=1.1.5082.36395, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PersianDateTime.1.1.5082.36395\lib\net40\PersianDateTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\DAccount.cs" />
+    <Compile Include="Class\DAllData.cs" />
+    <Compile Include="Class\DBankAccount.cs" />
+    <Compile Include="Class\DChargeMonthly.cs" />
+    <Compile Include="Class\DChMoPay.cs" />
+    <Compile Include="Class\DFeeIncome.cs" />
+    <Compile Include="Class\DGuarantor.cs" />
+    <Compile Include="Class\DInfo.cs" />
+    <Compile Include="Class\DInstallment.cs" />
+    <Compile Include="Class\DInstitution.cs" />
+    <Compile Include="Class\DIntroducer.cs" />
+    <Compile Include="Class\DLicense.cs" />
+    <Compile Include="Class\DLoan.cs" />
+    <Compile Include="Class\LoanDbChanges.cs" />
+    <Compile Include="Class\DLoanFund.cs" />
+    <Compile Include="Class\DPerAccType.cs" />
+    <Compile Include="Class\DPersonnel.cs" />
+    <Compile Include="Class\DUser.cs" />
+    <Compile Include="Class\DUserLogin.cs" />
+    <Compile Include="Class\DWage.cs" />
+    <Compile Include="Class\LocalDBConfiguration.cs" />
+    <Compile Include="LoanModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoanModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoanModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="spAllData_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spPeriodAllData_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSelectAccountInfo_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSelectChMoPayInfo_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSelectFeeIncomeInfo_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSelectLoanInfo_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSelectPersonnelInfo_Result.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccount.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBankAccount.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBlockType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblChargeMonthly.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblChMoPay.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFeeIncome.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFeeIncomeType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGuaranteeType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGuarantor.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInstallment.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInstitution.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblIntroducer.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblIntroducerType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLicense.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLoan.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLoanFund.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLoanType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPaymentType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPerAccType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPersonnel.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPostType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSecurityAccess.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSecurityQuestion.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSundry.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransactionType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWage.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWageCalculationType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWageType.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewAccountInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewChMoPayInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewFeeIncomeInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewInsLoan.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewLoanInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewPersonnelInfo.cs">
+      <DependentUpon>LoanModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="LoanModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LoanModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LoanModel.edmx.diagram">
+      <DependentUpon>LoanModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LoanModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoanModel.edmx</DependentUpon>
+      <LastGenOutput>LoanModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LoanModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoanModel.edmx</DependentUpon>
+      <LastGenOutput>LoanModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
